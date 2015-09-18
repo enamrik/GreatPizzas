@@ -1,53 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 var React = require('react-native');
 var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-} = React;
+    AppRegistry,
+    TabBarIOS,
+    View,
+    Text
+    } = React;
 
 var GreatPizzas = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-});
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    getInitialState: function() {
+        return {
+            selectedTab: 'specials'
+        }
+    },
+    render: function() {
+        return (
+            <TabBarIOS>
+                <TabBarIOS.Item title="Specials"
+                                icon="specials_tabbar_icon"
+                                selected={this.state.selectedTab === 'specials'}
+                                onPress={() => {this.setState({selectedTab:'specials'});}}>
+                    <View><Text>Specials</Text></View>
+                </TabBarIOS.Item>
+                <TabBarIOS.Item title="Order"
+                                icon="order_tabbar_icon"
+                                selected={this.state.selectedTab === 'order'}
+                                onPress={() => {this.setState({selectedTab:'order'});}}>
+                    <View><Text>Order</Text></View>
+                </TabBarIOS.Item>
+                <TabBarIOS.Item title="Account"
+                                icon="account_tabbar_icon"
+                                selected={this.state.selectedTab === 'account'}
+                                onPress={() => {this.setState({selectedTab:'account'});}}>
+                    <View><Text>Account</Text></View>
+                </TabBarIOS.Item>
+            </TabBarIOS>
+        );
+    }
 });
 
 AppRegistry.registerComponent('GreatPizzas', () => GreatPizzas);
