@@ -4,8 +4,8 @@
 
 # Intellij
 *.iml
-.idea
-.gradle
+.idea/
+.gradle/
 
 # Xcode
 #
