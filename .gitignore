@@ -5,6 +5,7 @@
 # Intellij
 *.iml
 .idea
+.gradle
 
 # Xcode
 #
