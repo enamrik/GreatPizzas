@@ -1,3 +1,5 @@
+package com.sofree.backend;
+
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;

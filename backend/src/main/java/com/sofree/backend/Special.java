@@ -1,3 +1,5 @@
+package com.sofree.backend;
+
 public class Special {
     private String title;
     private String description;
