@@ -11,26 +11,23 @@ var { View, Text, StyleSheet } = React;
 var SpecialsView = React.createClass({
   getInitialState: function() {
     return {
-      specials: [
-        {title:"title 1",
-          description:"Lorem ipsum dolor sit amet, ius ad pertinax oportere accommodare, an vix civibus corrumpit referrentur. Te nam case",
-          image:"http://localhost:4567/image1"
-        },
-        {title:"title 2",
-          description:"Lorem ipsum dolor sit amet, ius ad pertinax oportere accommodare, an vix civibus corrumpit referrentur. Te nam case",
-          image:"http://localhost:4567/image2"
-        }
-      ]
+      specials: []
     }
   },
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <TableView
-          style={styles.specials}
-          tableViewStyle={TableView.Consts.Style.Grouped}>
 
-          <Section arrow={true} label="Specials">
+  componentDidMount: function() {
+    this.loadSpecials();
+  },
+
+  render: function() {
+
+    var content = this.state.specials.length > 0
+      ?
+      <TableView
+        style={styles.specials}
+        tableViewStyle={TableView.Consts.Style.Grouped}>
+
+        <Section arrow={true} label="Specials">
             {this.state.specials.map((special) => {
               return (
                 <TableView.Cell>
@@ -41,11 +38,24 @@ var SpecialsView = React.createClass({
                   </SpecialView>
                 </TableView.Cell>
               )})
-            }
-          </Section>
-        </TableView>
-      </View>
-    );
+              }
+        </Section>
+      </TableView>
+      :
+      <Text>No specials</Text>;
+
+    return (<View style={styles.container}>{content}</View>);
+  },
+
+  loadSpecials: function() {
+    fetch('http://localhost:4567/specials')
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.setState({
+          specials: responseData
+        })
+      })
+      .done();
   }
 });
 

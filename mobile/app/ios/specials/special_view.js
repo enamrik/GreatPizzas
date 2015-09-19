@@ -14,7 +14,7 @@ var SpecialView = React.createClass({
   render: function() {
     return (
         <View style={styles.row}>
-          <Image></Image>
+          <Image style={{height:50, width:50}} source={{uri: this.props.image}}></Image>
           <Text style={styles.text}>
             {this.props.description}
           </Text>
