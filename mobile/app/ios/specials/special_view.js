@@ -14,10 +14,15 @@ var SpecialView = React.createClass({
   render: function() {
     return (
         <View style={styles.row}>
-          <Image style={{height:50, width:50}} source={{uri: this.props.image}}></Image>
-          <Text style={styles.text}>
-            {this.props.description}
-          </Text>
+          <Image style={styles.backgroundImage} source={{uri: this.props.image}}>
+            <View style={styles.topFillerArea}></View>
+            <View style={styles.bottomBar}>
+              <Text style={styles.description}>
+                {this.props.description}
+              </Text>
+              <View style={styles.orderButton}><Text style={styles.orderButtonText}>Order</Text></View>
+            </View>
+          </Image>
         </View>
     );
   }
@@ -27,13 +32,43 @@ var styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'center',
-    padding: 10,
     backgroundColor: '#FFF'
   },
-  text: {
-    flex: 1,
-    paddingLeft: 5,
-    marginRight:20
+  backgroundImage: {
+    flex:1,
+    height:200,
+    flexDirection:'column'
+  },
+  topFillerArea: {
+    flex:0.6,
+    backgroundColor:"transparent"
+  },
+  bottomBar: {
+    flex:0.4,
+    backgroundColor:"rgba(0,0,0,0.5)",
+    flexDirection:'row',
+    alignItems:'center'
+  },
+  description: {
+    flex:0.8,
+    fontWeight:"bold",
+    color:"white",
+    marginLeft:10,
+    marginRight:10
+  },
+  orderButton: {
+    flex:0.2,
+    alignSelf:'stretch',
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'purple',
+    opacity:0.6
+  },
+  orderButtonText: {
+    backgroundColor:'purple',
+    color:'green',
+    fontWeight:'bold',
+    fontSize:20
   }
 });
 

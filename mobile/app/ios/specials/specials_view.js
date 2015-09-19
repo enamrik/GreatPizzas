@@ -25,9 +25,9 @@ var SpecialsView = React.createClass({
       ?
       <TableView
         style={styles.specials}
-        tableViewStyle={TableView.Consts.Style.Grouped}>
+        tableViewStyle={TableView.Consts.Style.Plain}>
 
-        <Section arrow={true} label="Specials">
+        <Section label="Specials">
             {this.state.specials.map((special) => {
               return (
                 <TableView.Cell>
@@ -62,7 +62,8 @@ var SpecialsView = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex:1,
-    paddingTop:20
+    paddingTop:20,
+    paddingBottom:40
   },
   specials: {
     flex:1
