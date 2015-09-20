@@ -4,7 +4,8 @@ var { View, Text, TextInput, StyleSheet } = React;
 var LabeledFieldView = React.createClass({
   propTypes: {
     style: View.propTypes.style,
-    secure: React.PropTypes.bool
+    secure: React.PropTypes.bool,
+    onChangeText: React.PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -26,7 +27,16 @@ var LabeledFieldView = React.createClass({
           secureTextEntry={this.props.secure}
           style={styles.fieldInput}
           placeholder={this.props.fieldName}
-          onChangeText={(text) => this.setState({fieldValue: text})}
+          keyboardType="ascii-capable"
+          returnKeyType="done"
+          autoFocus={true}
+          autoCorrect={false}
+          onChangeText={ (text) => {
+            this.setState({fieldValue: text});
+            if(this.props.onChangeText) {
+              this.props.onChangeText(text);
+            }
+          }}
         >
         </TextInput>
           {!this.state.fieldValue
@@ -56,7 +66,7 @@ var styles = StyleSheet.create({
   },
   fieldInput: {
     backgroundColor:'transparent',
-    fontSize: 13,
+    fontSize: 14,
     height: 30
   }
 });
