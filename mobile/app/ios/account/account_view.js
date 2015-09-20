@@ -1,18 +1,23 @@
 var React = require('react-native');
-var { View, StyleSheet, Text, TouchableHighlight } = React;
+var { View, StyleSheet } = React;
 var LabeledFieldView = require('../forms/labeled_field_view');
+var NoBorderButton = require('../forms/no_border_button');
 
 var AccountView = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
         <View style={styles.signInForm}>
-          <LabeledFieldView fieldName="Username"></LabeledFieldView>
-          <LabeledFieldView fieldName="Password"></LabeledFieldView>
+          <LabeledFieldView style={styles.field} fieldName="Username"></LabeledFieldView>
+          <LabeledFieldView style={styles.field} fieldName="Password" secure={true} ></LabeledFieldView>
+          <NoBorderButton
+            style={styles.signInButton}
+            label="Log In"
+            onPress={this.signIn}
+            verticalPadding={20}
+            fontSize={20}
+          ></NoBorderButton>
         </View>
-        <TouchableHighlight style={styles.signInButton} onPress={this.signIn}>
-          <Text>Log In</Text>
-        </TouchableHighlight>
       </View>
     );
   },
@@ -35,7 +40,11 @@ var styles = StyleSheet.create({
     paddingLeft:40,
     paddingRight:40
   },
+  field: {
+    marginBottom:2
+  },
   signInButton: {
+    marginTop:20
   }
 });
 

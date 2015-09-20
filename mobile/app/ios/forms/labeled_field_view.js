@@ -2,6 +2,16 @@ var React = require('react-native');
 var { View, Text, TextInput, StyleSheet } = React;
 
 var LabeledFieldView = React.createClass({
+  propTypes: {
+    style: View.propTypes.style,
+    secure: React.PropTypes.bool
+  },
+
+  getDefaultProps: function() {
+    return {
+      secure: false
+    };
+  },
 
   getInitialState: function() {
     return {
@@ -11,8 +21,9 @@ var LabeledFieldView = React.createClass({
 
   render: function() {
     return (
-      <View style={styles.field}>
+      <View style={[styles.field, this.props.style]}>
         <TextInput
+          secureTextEntry={this.props.secure}
           style={styles.fieldInput}
           placeholder={this.props.fieldName}
           onChangeText={(text) => this.setState({fieldValue: text})}
@@ -20,7 +31,7 @@ var LabeledFieldView = React.createClass({
         </TextInput>
           {!this.state.fieldValue
             ? null
-            : (<Text style={styles.fieldLabel}>Username</Text>)}
+            : (<Text style={styles.fieldLabel}>{this.props.fieldName}</Text>)}
       </View>
     );
   }
@@ -31,21 +42,22 @@ var styles = StyleSheet.create({
     position:'relative',
     borderBottomWidth:0.3,
     borderBottomColor:'#f7f7f7',
-    height:35
+    justifyContent:'flex-end',
+    height:40
   },
   fieldLabel: {
     backgroundColor:'transparent',
     fontSize:9,
-    color:'#C7C7CC',
+    color:'#007AFF',
     position:'absolute',
-    top:-4,
+    top:1,
     left:0,
     height:20
   },
   fieldInput: {
     backgroundColor:'transparent',
     fontSize: 13,
-    height: 35
+    height: 30
   }
 });
 
