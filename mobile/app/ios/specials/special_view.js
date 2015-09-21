@@ -1,20 +1,17 @@
 var React = require('react-native');
-var TableView = require('react-native-tableview');
-
-var {
-  StyleSheet,
-  View,
-  Image,
-  Text
-  } = React;
-
+var {StyleSheet,View,Image,Text,TouchableHighlight} = React;
 
 var SpecialView = React.createClass({
 
   render: function() {
     return (
+      <TouchableHighlight
+        onPress={this.props.onPress}
+      >
         <View style={styles.row}>
-          <Image style={styles.backgroundImage} source={{uri: this.props.image}}>
+          <Image
+            style={styles.backgroundImage}
+            source={{uri: this.props.image}}>
             <View style={styles.topFillerArea}></View>
             <View style={styles.bottomBar}>
               <Text style={styles.description}>
@@ -24,6 +21,7 @@ var SpecialView = React.createClass({
             </View>
           </Image>
         </View>
+      </TouchableHighlight>
     );
   }
 });

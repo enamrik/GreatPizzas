@@ -1,17 +1,16 @@
 'use strict';
 
 var SpecialView = require('./special_view');
-var TableView = require('react-native-tableview');
-var { Section } = TableView;
-
 var React = require('react-native');
-var { View, Text, StyleSheet } = React;
+var { View, Text, StyleSheet, ListView } = React;
 
 
 var SpecialsView = React.createClass({
+
   getInitialState: function() {
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     return {
-      specials: []
+      dataSource: ds.cloneWithRows([])
     }
   },
 
@@ -20,27 +19,21 @@ var SpecialsView = React.createClass({
   },
 
   render: function() {
-
-    var content = this.state.specials.length > 0
+    var content = this.state.dataSource.getRowCount() > 0
       ?
-      <TableView
-        style={styles.specials}
-        tableViewStyle={TableView.Consts.Style.Plain}>
-
-        <Section label="Specials">
-            {this.state.specials.map((special) => {
-              return (
-                <TableView.Cell>
-                  <SpecialView
-                    title={special.title}
-                    description={special.description}
-                    image={special.image}>
-                  </SpecialView>
-                </TableView.Cell>
-              )})
-              }
-        </Section>
-      </TableView>
+    <ListView
+      dataSource={this.state.dataSource}
+      renderRow={(special, sectionId, rowId) => {
+        return (
+            <SpecialView
+              onPress={() => this.props.tabBarNavigator.goToAccount()}
+              title={special.title}
+              description={special.description}
+              image={special.image}>
+            </SpecialView>
+        );
+      }}
+    />
       :
       <Text>No specials</Text>;
 
@@ -52,7 +45,7 @@ var SpecialsView = React.createClass({
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          specials: responseData
+          dataSource: this.state.dataSource.cloneWithRows(responseData)
         })
       })
       .done();
@@ -62,7 +55,6 @@ var SpecialsView = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex:1,
-    paddingTop:20,
     paddingBottom:40
   },
   specials: {
