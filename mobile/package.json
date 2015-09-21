@@ -3,9 +3,29 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh"
+    "start": "node_modules/react-native/packager/packager.sh",
+    "test": "gulp test"
   },
   "dependencies": {
     "react-native": "^0.11.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "node_modules/react-native/jestSupport/scriptPreprocess.js",
+    "setupEnvScriptFile": "node_modules/react-native/jestSupport/env.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "packager/react-packager/src/Activity/"
+    ],
+    "testFileExtensions": [
+      "js"
+    ],
+    "unmockedModulePathPatterns": [
+      "promise",
+      "source-map"
+    ]
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "jest-cli": "^0.5.7"
   }
 }
