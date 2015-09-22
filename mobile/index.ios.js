@@ -43,7 +43,10 @@ var GreatPizzas = React.createClass({
 
   render: function() {
     return (
-      <TabBarIOS>
+      <TabBarIOS
+        tintColor="white"
+        barTintColor="darkslateblue"
+      >
         <TabBarIOS.Item title="Specials"
                         icon="specials_tabbar_icon"
                         selected={this.state.selectedTab === tabs.specials}
