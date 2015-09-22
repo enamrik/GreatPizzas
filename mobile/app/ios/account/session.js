@@ -10,6 +10,10 @@ class UserSession {
     return this.authenticated;
   }
 
+  getUserInfo() {
+    return this.user;
+  }
+
   startNewSession(user, token) {
     this.token = token;
     this.user = user;

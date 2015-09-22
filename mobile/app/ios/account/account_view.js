@@ -1,75 +1,35 @@
-var React = require('react-native');
-var { View, StyleSheet } = React;
-var LabeledFieldView = require('../forms/labeled_field_view');
-var NoBorderButton = require('../forms/no_border_button');
-var auth = require('./auth');
+const React = require('react-native');
+const { View, StyleSheet, Component } = React;
+const AccountDetailsView = require('./account_details_view');
+const LoginView = require('./login_view');
+const user = require('./session');
 
-var AccountView = React.createClass({
+class AccountView extends Component {
 
-  getInitialState: function() {
-    return {
-      username: "",
-      password: ""
-    }
-  },
-
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.topFiller}></View>
-        <View style={styles.signInForm}>
-          <LabeledFieldView
-            style={styles.field}
-            fieldName="Username"
-            onChangeText={(text) => this.setState({username: text})}/>
-          <LabeledFieldView
-            style={styles.field}
-            fieldName="Password"
-            onChangeText={(text) => this.setState({password: text})}
-            secure={true} />
-          <NoBorderButton
-            style={styles.signInButton}
-            label="Log In"
-            onPress={this.logIn}
-            verticalPadding={20}
-            fontSize={20}
-          ></NoBorderButton>
-        </View>
-      </View>
-    );
-  },
-
-  logIn: function() {
-    auth.login(this.state.username, this.state.password)
-      .then(function(data){
-        console.log(data);
-      })
-      .catch((error) => {
-        console.warn(error);
-      });
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAuthenticated: user.isAuthenticated()
+    };
   }
-});
 
-var styles = StyleSheet.create({
+  render() {
+    const content = this.state.isAuthenticated
+      ? <AccountDetailsView/>
+      : <LoginView onAuthenticated={this.onAuthenticated.bind(this)} />;
+
+    return (<View style={styles.container}>{ content }</View>)
+  }
+
+  onAuthenticated() {
+    this.setState({isAuthenticated: user.isAuthenticated()});
+  }
+}
+
+const styles = StyleSheet.create({
   container: {
     paddingTop:20,
-    flex: 1,
-    flexDirection:'column',
-    justifyContent:'center'
-  },
-  topFiller: {
-    flex:0.1
-  },
-  signInForm: {
-    flex:0.9,
-    paddingLeft:40,
-    paddingRight:40
-  },
-  field: {
-    marginBottom:2
-  },
-  signInButton: {
-    marginTop:20
+    flex: 1
   }
 });
 
