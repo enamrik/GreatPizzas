@@ -1,47 +1,24 @@
 'use strict';
 
-var AccountView = require('./app/ios/account/account_view');
-var SpecialsView = require('./app/ios/specials/specials_view');
-var React = require('react-native');
-var { AppRegistry, TabBarIOS, View, Text } = React;
+const AccountView = require('./app/ios/account/account_view');
+const SpecialsView = require('./app/ios/specials/specials_view');
+const React = require('react-native');
+const { AppRegistry, TabBarIOS, View, Text, Component } = React;
 
-var tabs = {
+const tabs = {
   order: 'order',
   account: 'account',
   specials: 'specials'
 };
 
-class PizzaTabBarNavigator {
-  constructor(tabBar) {
-    this.tabBar = tabBar;
+class GreatPizzas extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {selectedTab: tabs.specials};
   }
 
-  goToSpecials() {
-    this.tabBar.setState({selectedTab:tabs.specials})
-  }
-
-  goToOrder() {
-    this.tabBar.setState({selectedTab:tabs.order})
-  }
-
-  goToAccount() {
-    this.tabBar.setState({selectedTab:tabs.account})
-  }
-}
-
-var GreatPizzas = React.createClass({
-
-  getInitialState: function() {
-    return {
-      selectedTab: tabs.specials
-    }
-  },
-
-  componentWillMount: function() {
-    this.tabBarNavigator = new PizzaTabBarNavigator(this)
-  },
-
-  render: function() {
+  render() {
     return (
       <TabBarIOS
         tintColor="white"
@@ -50,13 +27,16 @@ var GreatPizzas = React.createClass({
         <TabBarIOS.Item title="Specials"
                         icon="specials_tabbar_icon"
                         selected={this.state.selectedTab === tabs.specials}
-                        onPress={() => {this.tabBarNavigator.goToSpecials();}}>
-          <SpecialsView tabBarNavigator={this.tabBarNavigator}></SpecialsView>
+                        onPress={() => this.goToTab(tabs.specials)}>
+          <SpecialsView
+            goToAccount={() => this.goToTab(tabs.account)}
+            goToOrder={() => this.goToTab(tabs.order)}>
+          </SpecialsView>
         </TabBarIOS.Item>
         <TabBarIOS.Item title="Order"
                         icon="order_tabbar_icon"
                         selected={this.state.selectedTab === tabs.order}
-                        onPress={() => {this.tabBarNavigator.goToOrder();}}>
+                        onPress={() => this.goToTab(tabs.order)}>
           <View style={{paddingTop:60}}>
               <Text>Order</Text>
           </View>
@@ -64,12 +44,16 @@ var GreatPizzas = React.createClass({
         <TabBarIOS.Item title="Account"
                         icon="account_tabbar_icon"
                         selected={this.state.selectedTab === tabs.account}
-                        onPress={() => {this.tabBarNavigator.goToAccount();}}>
+                        onPress={() => this.goToTab(tabs.account)}>
           <AccountView></AccountView>
         </TabBarIOS.Item>
       </TabBarIOS>
     );
   }
-});
+
+  goToTab(tabName) {
+    this.setState({selectedTab:tabName});
+  }
+}
 
 AppRegistry.registerComponent('GreatPizzas', () => GreatPizzas);
