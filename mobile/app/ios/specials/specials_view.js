@@ -1,5 +1,7 @@
 'use strict';
 
+var api = require('../../config/api');
+var user = require('../account/session');
 var SpecialView = require('./special_view');
 var React = require('react-native');
 var { View, Text, StyleSheet, ListView } = React;
@@ -18,15 +20,24 @@ var SpecialsView = React.createClass({
     this.loadSpecials();
   },
 
+  orderSpecial: function(special) {
+    if(user.isAuthenticated())  {
+      this.props.tabBarNavigator.goToOrder(special);
+    }
+    else {
+      this.props.tabBarNavigator.goToAccount();
+    }
+  },
+
   render: function() {
     var content = this.state.dataSource.getRowCount() > 0
       ?
     <ListView
       dataSource={this.state.dataSource}
-      renderRow={(special, sectionId, rowId) => {
+      renderRow={(special) => {
         return (
             <SpecialView
-              onPress={() => this.props.tabBarNavigator.goToAccount()}
+              onPress={() => this.orderSpecial(special)}
               title={special.title}
               description={special.description}
               image={special.image}>
@@ -41,7 +52,7 @@ var SpecialsView = React.createClass({
   },
 
   loadSpecials: function() {
-    fetch('http://localhost:4567/specials')
+    fetch(api.domain + '/specials')
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({

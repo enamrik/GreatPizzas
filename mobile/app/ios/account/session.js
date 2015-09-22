@@ -6,10 +6,14 @@ class UserSession {
     this._clearSession();
   }
 
+  isAuthenticated() {
+    return this.authenticated;
+  }
+
   startNewSession(user, token) {
     this.token = token;
     this.user = user;
-    this.isAuthenticated = true;
+    this.authenticated = true;
   }
 
   endSession() {
@@ -19,7 +23,7 @@ class UserSession {
   _clearSession() {
     this.user = {};
     this.token = "";
-    this.isAuthenticated = false;
+    this.authenticated = false;
   }
 }
 
