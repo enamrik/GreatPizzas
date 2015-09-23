@@ -4,12 +4,8 @@ const AccountView = require('./app/ios/account/account_view');
 const SpecialsView = require('./app/ios/specials/specials_view');
 const React = require('react-native');
 const { AppRegistry, TabBarIOS, View, Text, Component } = React;
-
-const tabs = {
-  order: 'order',
-  account: 'account',
-  specials: 'specials'
-};
+const { Provider } = require('react-redux/native');
+const configureStore = require('./app/config/configureStore');
 
 class GreatPizzas extends Component {
 
@@ -19,7 +15,7 @@ class GreatPizzas extends Component {
   }
 
   render() {
-    return (
+    const content = (
       <TabBarIOS
         tintColor="white"
         barTintColor="darkslateblue"
@@ -49,11 +45,21 @@ class GreatPizzas extends Component {
         </TabBarIOS.Item>
       </TabBarIOS>
     );
+
+    return <Provider store={ store }>{() => content }</Provider>;
   }
 
   goToTab(tabName) {
     this.setState({selectedTab:tabName});
   }
 }
+
+const store = configureStore();
+
+const tabs = {
+  order: 'order',
+  account: 'account',
+  specials: 'specials'
+};
 
 AppRegistry.registerComponent('GreatPizzas', () => GreatPizzas);

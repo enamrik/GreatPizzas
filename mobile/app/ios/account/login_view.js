@@ -1,21 +1,13 @@
 const React = require('react-native');
-const { Component, View, StyleSheet } = React;
+const { Component, View, StyleSheet, Text } = React;
 const LabeledFieldView = require('../forms/labeled_field_view');
 const NoBorderButton = require('../forms/no_border_button');
-const auth = require('./auth');
-
-const propTypes =  {
-  onAuthenticated: React.PropTypes.func.isRequired
-};
 
 class LoginView extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      username: "",
-      password: ""
-    };
+    this.state = {username: "", password: ""};
   }
 
   render() {
@@ -23,6 +15,9 @@ class LoginView extends Component {
       <View style={styles.container}>
         <View style={styles.topFiller}></View>
         <View style={styles.signInForm}>
+
+          <Text>{ this.props.isSigningIn ? "Signing In..." : "" }</Text>
+          <Text>{ this.props.errorMessage }</Text>
           <LabeledFieldView
             style={styles.field}
             fieldName="Username"
@@ -35,7 +30,7 @@ class LoginView extends Component {
           <NoBorderButton
             style={styles.signInButton}
             label="Log In"
-            onPress={this.logIn.bind(this)}
+            onPress={() => this.props.onLoginTap(this.state.username, this.state.password)}
             verticalPadding={20}
             fontSize={20}
           ></NoBorderButton>
@@ -43,20 +38,11 @@ class LoginView extends Component {
       </View>
     );
   }
-
-  logIn() {
-    auth.login(this.state.username, this.state.password)
-      .then(() => {
-        if(this.props.onAuthenticated) {
-          this.props.onAuthenticated();
-        }
-      })
-      .catch((error) => {
-        console.warn(error);
-      });
-  }
 }
-LoginView.propTypes = propTypes;
+
+LoginView.propTypes = {
+  onLoginTap: React.PropTypes.func.isRequired
+};
 
 const styles = StyleSheet.create({
   container: {

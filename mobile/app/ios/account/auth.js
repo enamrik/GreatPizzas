@@ -19,7 +19,9 @@ module.exports = {
         })
       })
         .then((data) => {
+          //TODO: keep storing session for now until we convert specials to using redux
           session.startNewSession(data.user, data.token);
+          return Promise.resolve(data);
         } );
   }
 };

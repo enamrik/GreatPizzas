@@ -3,26 +3,25 @@ const { View, StyleSheet, Component } = React;
 const AccountDetailsView = require('./account_details_view');
 const LoginView = require('./login_view');
 const user = require('./session');
+const auth = require('./auth');
+const { connect } = require('react-redux/native');
+const { bindActionCreators } = require('redux');
+const accountActions = require('./actions');
 
 class AccountView extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isAuthenticated: user.isAuthenticated()
-    };
-  }
-
   render() {
-    const content = this.state.isAuthenticated
+    const content = this.props.isAuthenticated
       ? <AccountDetailsView/>
-      : <LoginView onAuthenticated={this.onAuthenticated.bind(this)} />;
+      : <LoginView isSigningIn={this.props.isSigningIn}
+                   errorMessage={this.props.errorMessage}
+                   onLoginTap={(username, password) => this.doLogin(username, password)} />;
 
     return (<View style={styles.container}>{ content }</View>)
   }
 
-  onAuthenticated() {
-    this.setState({isAuthenticated: user.isAuthenticated()});
+  doLogin(username, password) {
+    this.props.attemptLogin(username, password);
   }
 }
 
@@ -33,5 +32,8 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = AccountView;
+module.exports = connect(
+  (state) => state.account,
+  (dispatch) => bindActionCreators(accountActions, dispatch))
+(AccountView);
 
