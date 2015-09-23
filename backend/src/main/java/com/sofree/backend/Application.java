@@ -29,6 +29,7 @@ public class Application {
         });
 
         post("/login", (request, response) -> {
+            Thread.sleep(1000);
             RequestMap model = RequestMap.parse(request.body());
             User user = repository.getUserByUsernameAndPassword(model.getString("username"), model.getString("password"));
             return new LogInResponse(user, LOGIN_TOKEN);
