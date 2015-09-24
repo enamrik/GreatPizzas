@@ -1,5 +1,6 @@
 var React = require('react-native');
 var {StyleSheet,View,Image,Text,TouchableHighlight,Component} = React;
+var api = require('../../config/api');
 
 class SpecialView extends Component {
 
@@ -18,17 +19,17 @@ class SpecialView extends Component {
         </View>
       </TouchableHighlight>;
 
+    const availableMessage = this.isAvailableNow(this.props.special)
+      ?null
+      : < Text style={styles.availableOn}>{"Available on: " + this.formatDate(this.props.special.availableOn)}</Text>
+
     return (
         <View style={styles.row}>
           <Image
             style={styles.backgroundImage}
-            source={{uri: this.props.special.image}}>
+            source={{uri: api.domain + this.props.special.image}}>
             <View style={styles.topFillerArea}>
-              < Text style={styles.availableOn}>{
-                this.isAvailableNow(this.props.special)
-                  ? ""
-                  : "Available on: " + this.formatDate(this.props.special.availableOn)
-              }</Text>
+              { availableMessage }
             </View>
             <View style={styles.bottomBar}>
               <Text style={styles.description}>
