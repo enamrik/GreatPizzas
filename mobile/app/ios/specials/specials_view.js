@@ -31,10 +31,9 @@ class SpecialsView extends Component {
       renderRow={(special) => {
         return (
             <SpecialView
-              onPress={() => this.orderSpecial(special)}
-              title={special.title}
-              description={special.description}
-              image={special.image}>
+              onOrderNow={() => this.orderSpecial(special)}
+              onRemindMe={() => this.addToCalendar(special)}
+              special={special}>
             </SpecialView>
         );
       }}
@@ -43,6 +42,17 @@ class SpecialsView extends Component {
       <Text>No specials</Text>;
 
     return (<View style={styles.container}>{content}</View>);
+  }
+
+  addToCalendar(special) {
+    var CalendarManager = require('react-native').NativeModules.CalendarManager;
+    CalendarManager.addEvent(
+      special.title,
+      '4 Privet Drive, Surrey',
+      new Date(special.availableOn),
+      function(error){
+        console.log(error);
+      });
   }
 
   orderSpecial(special) {

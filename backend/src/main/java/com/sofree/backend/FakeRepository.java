@@ -1,6 +1,7 @@
 package com.sofree.backend;
 
 import org.apache.commons.io.IOUtils;
+import org.joda.time.LocalDate;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,9 +13,9 @@ import static java.util.UUID.randomUUID;
 public class FakeRepository {
     public List<Special> getSpecials() {
         return newArrayList(
-                new Special("Veggie Pizza", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tellus erat", "http://localhost:4567/images/meat_lovers_pizza.jpg"),
-                new Special("Meat Lovers Pizza", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "http://localhost:4567/images/veggie_pizza.jpg"),
-                new Special("Hawaiian Pizza", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tellus erat, ultrices nec ultrices vitae", "http://localhost:4567/images/hawaiian_pizza.jpg")
+                new Special("Veggie Pizza", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tellus erat", "http://localhost:4567/images/meat_lovers_pizza.jpg", LocalDate.now().plusDays(20)),
+                new Special("Meat Lovers Pizza", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "http://localhost:4567/images/veggie_pizza.jpg", LocalDate.now()),
+                new Special("Hawaiian Pizza", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tellus erat, ultrices nec ultrices vitae", "http://localhost:4567/images/hawaiian_pizza.jpg", LocalDate.now().plusDays(5))
         );
     }
 
