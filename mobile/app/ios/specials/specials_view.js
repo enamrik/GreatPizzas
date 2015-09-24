@@ -4,6 +4,7 @@ const api = require('../../config/api');
 const user = require('../account/session');
 const SpecialView = require('./special_view');
 const React = require('react-native');
+const theme = require('../../theme');
 const { View, Text, StyleSheet, ListView, Component } = React;
 
 const propTypes = {
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     paddingBottom:40,
-    backgroundColor:'darkslateblue'
+    backgroundColor: theme.mainColor
   },
   specials: {
     flex:1

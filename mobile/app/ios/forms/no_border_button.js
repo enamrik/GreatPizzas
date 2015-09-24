@@ -1,4 +1,5 @@
 var React = require('react-native');
+const theme = require('../../theme');
 var { Text, TouchableHighlight, StyleSheet, View } = React;
 
 var NoBorderButton = React.createClass({
@@ -48,7 +49,7 @@ var styles = StyleSheet.create({
     flex:1,
     color:'white',
     textAlign:'center',
-    backgroundColor:'darkslateblue',
+    backgroundColor:theme.mainColor,
     borderRadius:6,
     fontWeight:'bold'
   }

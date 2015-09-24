@@ -1,4 +1,5 @@
 var React = require('react-native');
+const theme = require('../../theme');
 var { View, Text, TextInput, StyleSheet } = React;
 
 var LabeledFieldView = React.createClass({
@@ -31,7 +32,7 @@ var LabeledFieldView = React.createClass({
           returnKeyType="done"
           autoFocus={true}
           autoCorrect={false}
-          placeholderTextColor="darkslateblue"
+          placeholderTextColor={theme.mainColor}
           onChangeText={ (text) => {
             this.setState({fieldValue: text});
             if(this.props.onChangeText) {
@@ -52,14 +53,14 @@ var styles = StyleSheet.create({
   field: {
     position:'relative',
     borderBottomWidth:0.3,
-    borderBottomColor:'darkslateblue',
+    borderBottomColor:theme.mainColor,
     justifyContent:'flex-end',
     height:40
   },
   fieldLabel: {
     backgroundColor:'transparent',
     fontSize:9,
-    color:'darkslateblue',
+    color:theme.mainColor,
     position:'absolute',
     top:1,
     left:0,

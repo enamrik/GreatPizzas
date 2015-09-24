@@ -6,6 +6,7 @@ const React = require('react-native');
 const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS } = React;
 const { Provider } = require('react-redux/native');
 const configureStore = require('./app/config/configureStore');
+const theme = require('./app/theme');
 
 StatusBarIOS.setStyle('light-content');
 
@@ -20,7 +21,7 @@ class GreatPizzas extends Component {
     const content = (
       <TabBarIOS
         tintColor="white"
-        barTintColor="darkslateblue"
+        barTintColor={theme.mainColor}
       >
         <TabBarIOS.Item title="Specials"
                         icon="specials_tabbar_icon"
@@ -35,7 +36,7 @@ class GreatPizzas extends Component {
                         icon="order_tabbar_icon"
                         selected={this.state.selectedTab === tabs.order}
                         onPress={() => this.goToTab(tabs.order)}>
-          <View style={{flex:1, paddingTop:60, backgroundColor:'darkslateblue'}}>
+          <View style={{flex:1, paddingTop:60, backgroundColor:theme.mainColor}}>
               <Text style={{color:'white'}}>Order</Text>
           </View>
         </TabBarIOS.Item>
