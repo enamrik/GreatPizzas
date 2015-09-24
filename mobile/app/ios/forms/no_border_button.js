@@ -46,8 +46,11 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     flex:1,
-    color:'#007AFF',
-    textAlign:'center'
+    color:'white',
+    textAlign:'center',
+    backgroundColor:'darkslateblue',
+    borderRadius:6,
+    fontWeight:'bold'
   }
 });
 

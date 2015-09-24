@@ -16,8 +16,10 @@ class LoginView extends Component {
         <View style={styles.topFiller}></View>
         <View style={styles.signInForm}>
 
-          <Text>{ this.props.isSigningIn ? "Signing In..." : "" }</Text>
-          <Text>{ this.props.errorMessage }</Text>
+          <View style={styles.notify}>
+            <Text>{ this.props.isSigningIn ? "Signing In..." : "" }</Text>
+            <Text>{ this.props.errorMessage }</Text>
+          </View>
           <LabeledFieldView
             style={styles.field}
             fieldName="Username"
@@ -31,8 +33,8 @@ class LoginView extends Component {
             style={styles.signInButton}
             label="Log In"
             onPress={() => this.props.onLoginTap(this.state.username, this.state.password)}
-            verticalPadding={20}
-            fontSize={20}
+            verticalPadding={15}
+            fontSize={15}
           ></NoBorderButton>
         </View>
       </View>
@@ -48,21 +50,25 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     flexDirection:'column',
-    justifyContent:'center'
+    justifyContent:'center',
+    backgroundColor:'white'
   },
   topFiller: {
-    flex:0.1
+    flex:0.001
   },
   signInForm: {
-    flex:0.9,
+    flex:1,
     paddingLeft:40,
     paddingRight:40
   },
   field: {
-    marginBottom:2
+    marginBottom:10
   },
   signInButton: {
-    marginTop:20
+    marginTop:50
+  },
+  notify: {
+    marginBottom:10
   }
 });
 

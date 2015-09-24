@@ -80,7 +80,8 @@ SpecialsView.propTypes = propTypes;
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    paddingBottom:40
+    paddingBottom:40,
+    backgroundColor:'darkslateblue'
   },
   specials: {
     flex:1

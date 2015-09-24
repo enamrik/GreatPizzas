@@ -3,9 +3,11 @@
 const AccountView = require('./app/ios/account/account_view');
 const SpecialsView = require('./app/ios/specials/specials_view');
 const React = require('react-native');
-const { AppRegistry, TabBarIOS, View, Text, Component } = React;
+const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS } = React;
 const { Provider } = require('react-redux/native');
 const configureStore = require('./app/config/configureStore');
+
+StatusBarIOS.setStyle('light-content');
 
 class GreatPizzas extends Component {
 
@@ -33,8 +35,8 @@ class GreatPizzas extends Component {
                         icon="order_tabbar_icon"
                         selected={this.state.selectedTab === tabs.order}
                         onPress={() => this.goToTab(tabs.order)}>
-          <View style={{paddingTop:60}}>
-              <Text>Order</Text>
+          <View style={{flex:1, paddingTop:60, backgroundColor:'darkslateblue'}}>
+              <Text style={{color:'white'}}>Order</Text>
           </View>
         </TabBarIOS.Item>
         <TabBarIOS.Item title="Account"

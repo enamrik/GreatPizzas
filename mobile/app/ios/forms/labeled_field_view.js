@@ -31,6 +31,7 @@ var LabeledFieldView = React.createClass({
           returnKeyType="done"
           autoFocus={true}
           autoCorrect={false}
+          placeholderTextColor="darkslateblue"
           onChangeText={ (text) => {
             this.setState({fieldValue: text});
             if(this.props.onChangeText) {
@@ -51,14 +52,14 @@ var styles = StyleSheet.create({
   field: {
     position:'relative',
     borderBottomWidth:0.3,
-    borderBottomColor:'#f7f7f7',
+    borderBottomColor:'darkslateblue',
     justifyContent:'flex-end',
     height:40
   },
   fieldLabel: {
     backgroundColor:'transparent',
     fontSize:9,
-    color:'#007AFF',
+    color:'darkslateblue',
     position:'absolute',
     top:1,
     left:0,
@@ -67,7 +68,8 @@ var styles = StyleSheet.create({
   fieldInput: {
     backgroundColor:'transparent',
     fontSize: 14,
-    height: 30
+    height: 30,
+    color:'green'
   }
 });
 
