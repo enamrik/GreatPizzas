@@ -2,18 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "account_tabbar_icon.png"
+      "filename" : "account_tabbar_icon.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "account_tabbar_icon-1.png"
+      "filename" : "account_tabbar_icon-1.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "account_tabbar_icon-2.png"
+      "filename" : "account_tabbar_icon-2.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
