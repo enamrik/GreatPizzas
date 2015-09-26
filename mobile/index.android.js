@@ -2,15 +2,19 @@ const React = require('react-native');
 const { AppRegistry, StyleSheet, Text, View, ToolbarAndroid, Component, Navigator, TouchableHighlight } = React;
 const SpecialsView = require('./app/domain/specials/specials_view');
 const theme = require('./app/theme');
+const AccountView = require('./app/domain/account/account_view');
+const configureStore = require('./app/config/configureStore');
+const { Provider } = require('react-redux/native');
 
 const api = require('./app/config/api');
 api.domain = "http://10.0.2.2:4567";
 
+const store = configureStore();
 let _navigator = null;
 
 class GreatPizzas extends Component {
   render() {
-    return (
+    const content = (
       <View style={{flex: 1}}>
         <ToolbarAndroid
           actions={[
@@ -24,12 +28,14 @@ class GreatPizzas extends Component {
 
         <Navigator
           style={{flex:1, backgroundColor:'white'}}
-          initialRoute={{name: 'order'}}
+          initialRoute={{name: 'account'}}
           configureScene={() => Navigator.SceneConfigs.FadeAndroid}
           renderScene={this.renderMenuItem.bind(this)}
           />
       </View>
     );
+
+    return <Provider store={ store }>{() => content }</Provider>;
   }
 
   onActionSelected(position) {
@@ -46,12 +52,10 @@ class GreatPizzas extends Component {
 
     if(route.name == 'specials') {
       return (
-        <View>
           <SpecialsView
             goToAccount={() => this.goToTab('account')}
             goToOrder={() => this.goToTab('order')}>
           </SpecialsView>
-        </View>
       );
     }
     else if(route.name == 'order') {
@@ -62,11 +66,7 @@ class GreatPizzas extends Component {
       );
     }
     else if(route.name == 'account') {
-      return (
-        <View style={{flex:1,backgroundColor:'white'}}>
-            <Text>Account</Text>
-        </View>
-      );
+      return <AccountView></AccountView>;
     }
  }
 
@@ -85,8 +85,7 @@ var styles = StyleSheet.create({
   toolbar: {
     backgroundColor: theme.mainColor,
     height: 56
-  },
-
+  }
 });
 
 AppRegistry.registerComponent('GreatPizzas', () => GreatPizzas);
