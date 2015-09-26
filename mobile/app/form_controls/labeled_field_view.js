@@ -62,14 +62,14 @@ var styles = StyleSheet.create({
     fontSize:9,
     color:theme.mainColor,
     position:'absolute',
-    top:1,
+    top:-3,
     left:0,
     height:20
   },
   fieldInput: {
     backgroundColor:'transparent',
     fontSize: 14,
-    height: 30,
+    height: 40,
     color:'green'
   }
 });
