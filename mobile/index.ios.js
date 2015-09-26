@@ -3,11 +3,12 @@
 const AccountView = require('./app/domain/account/account_view');
 const SpecialsView = require('./app/domain/specials/specials_view');
 const React = require('react-native');
-const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS } = React;
+const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS, StyleSheet } = React;
 const { Provider } = require('react-redux/native');
 const configureStore = require('./app/config/configureStore');
 const theme = require('./app/theme');
 
+const store = configureStore();
 StatusBarIOS.setStyle('light-content');
 
 class GreatPizzas extends Component {
@@ -19,6 +20,7 @@ class GreatPizzas extends Component {
 
   render() {
     const content = (
+      <View style={styles.container}>
       <TabBarIOS
         tintColor="white"
         barTintColor={theme.mainColor}
@@ -47,6 +49,7 @@ class GreatPizzas extends Component {
           <AccountView></AccountView>
         </TabBarIOS.Item>
       </TabBarIOS>
+      </View>
     );
 
     return <Provider store={ store }>{() => content }</Provider>;
@@ -57,7 +60,13 @@ class GreatPizzas extends Component {
   }
 }
 
-const store = configureStore();
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    paddingTop:20,
+    backgroundColor:theme.mainColor
+  }
+});
 
 const tabs = {
   order: 'order',

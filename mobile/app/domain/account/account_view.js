@@ -27,7 +27,6 @@ class AccountView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop:20,
     flex: 1,
     backgroundColor:'#54488f'
   }
