@@ -21,20 +21,15 @@ var NoBorderButton = React.createClass({
   render: function() {
     return (
       <TouchableHighlight
-        style={[styles.button, this.props.style]}
-        underlayColor="transparent"
-        onPress={this.props.onPress}
-      >
-        <Text style={[
-          styles.buttonText,
-          {
+        style={[styles.button, this.props.style, {
             paddingTop: this.props.verticalPadding,
-            paddingBottom: this.props.verticalPadding,
-            fontSize: this.props.fontSize
-          }
-        ]}
-        >
-        {this.props.label}
+            paddingBottom: this.props.verticalPadding
+        }]}
+        underlayColor={theme.mainColor}
+        onPress={this.props.onPress}>
+        <Text
+          style={[ styles.buttonText, {fontSize: this.props.fontSize} ]}>
+          {this.props.label}
         </Text>
       </TouchableHighlight>
     );
@@ -43,14 +38,13 @@ var NoBorderButton = React.createClass({
 
 var styles = StyleSheet.create({
   button: {
-    justifyContent:'center'
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:theme.mainColor,
+    borderRadius:6
   },
   buttonText: {
-    flex:1,
     color:'white',
-    textAlign:'center',
-    backgroundColor:theme.mainColor,
-    borderRadius:6,
     fontWeight:'bold'
   }
 });
