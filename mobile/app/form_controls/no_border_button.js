@@ -1,5 +1,5 @@
 var React = require('react-native');
-const theme = require('../../theme');
+const theme = require('../theme');
 var { Text, TouchableHighlight, StyleSheet, View } = React;
 
 var NoBorderButton = React.createClass({

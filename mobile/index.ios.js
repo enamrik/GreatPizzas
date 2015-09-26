@@ -1,7 +1,7 @@
 'use strict';
 
-const AccountView = require('./app/ios/account/account_view');
-const SpecialsView = require('./app/ios/specials/specials_view');
+const AccountView = require('./app/domain/account/account_view');
+const SpecialsView = require('./app/domain/specials/specials_view');
 const React = require('react-native');
 const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS } = React;
 const { Provider } = require('react-redux/native');

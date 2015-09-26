@@ -1,4 +1,4 @@
-const accountReducers = require('../ios/account/reducers');
+const accountReducers = require('../domain/account/reducers');
 const { createStore, combineReducers, applyMiddleware } = require('redux');
 const thunk = require('redux-thunk');
 

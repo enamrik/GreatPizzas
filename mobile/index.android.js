@@ -1,6 +1,6 @@
 const React = require('react-native');
 const { AppRegistry, StyleSheet, Text, View, ToolbarAndroid, Component, Navigator, TouchableHighlight } = React;
-const SpecialsView = require('./app/ios/specials/specials_view');
+const SpecialsView = require('./app/domain/specials/specials_view');
 const theme = require('./app/theme');
 
 const api = require('./app/config/api');

@@ -1,7 +1,7 @@
 const React = require('react-native');
 const { Component, View, StyleSheet, Text } = React;
-const LabeledFieldView = require('../forms/labeled_field_view');
-const NoBorderButton = require('../forms/no_border_button');
+const LabeledFieldView = require('../../form_controls/labeled_field_view');
+const NoBorderButton = require('../../form_controls/no_border_button');
 
 class LoginView extends Component {
 
