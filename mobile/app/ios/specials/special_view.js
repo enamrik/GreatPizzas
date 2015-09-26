@@ -21,7 +21,10 @@ class SpecialView extends Component {
 
     const availableMessage = this.isAvailableNow(this.props.special)
       ?null
-      : < Text style={styles.availableOn}>{"Available on: " + this.formatDate(this.props.special.availableOn)}</Text>
+      :
+      <View style={styles.availableOn}>
+        <Text style={styles.availableOnText}>{"Available on: " + this.formatDate(this.props.special.availableOn)}</Text>
+      </View>;
 
     return (
         <View style={styles.row}>
@@ -85,18 +88,18 @@ var styles = StyleSheet.create({
     marginRight:10
   },
   orderButton: {
+    padding:10,
+    marginRight:10,
     alignSelf:'center',
     justifyContent:'center',
     alignItems:'center',
-    paddingRight:10
+    backgroundColor:'yellow',
+    borderRadius:6
   },
   orderButtonText: {
     color:'green',
     fontWeight:'bold',
-    backgroundColor:'yellow',
-    fontSize:15,
-    padding:10,
-    borderRadius:6
+    fontSize:15
   },
   availability: {
     padding:10,
@@ -117,9 +120,10 @@ var styles = StyleSheet.create({
     left:0,
     bottom:0,
     backgroundColor:'rgba(0,0,0,0.5)',
-    color:'#FFFFFF',
     padding:5
-
+  },
+  availableOnText: {
+    color:'#FFFFFF'
   }
 });
 
