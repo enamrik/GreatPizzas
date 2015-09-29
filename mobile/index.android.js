@@ -28,7 +28,7 @@ class GreatPizzas extends Component {
 
         <Navigator
           style={{flex:1, backgroundColor:'white'}}
-          initialRoute={{name: 'account'}}
+          initialRoute={{name: 'specials'}}
           configureScene={() => Navigator.SceneConfigs.FadeAndroid}
           renderScene={this.renderMenuItem.bind(this)}
           />
