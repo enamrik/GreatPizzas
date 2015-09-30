@@ -23,6 +23,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		B8CD6EFE1BBB79190041D146 /* LocalNotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6EFD1BBB79190041D146 /* LocalNotificationsManager.m */; settings = {ASSET_TAGS = (); }; };
+		B8CD6EFF1BBB79190041D146 /* LocalNotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6EFD1BBB79190041D146 /* LocalNotificationsManager.m */; settings = {ASSET_TAGS = (); }; };
+		B8CD6F0C1BBB7E080041D146 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6F0B1BBB7E080041D146 /* MainViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B8CD6F0D1BBB7E080041D146 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6F0B1BBB7E080041D146 /* MainViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B8EEEFDC1BB32E1A0021FEE2 /* CalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EEEFDB1BB32E1A0021FEE2 /* CalendarManager.m */; settings = {ASSET_TAGS = (); }; };
 		B8EEEFDD1BB32E1A0021FEE2 /* CalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EEEFDB1BB32E1A0021FEE2 /* CalendarManager.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -129,6 +133,10 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		B8CD6EFC1BBB79190041D146 /* LocalNotificationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationsManager.h; sourceTree = "<group>"; };
+		B8CD6EFD1BBB79190041D146 /* LocalNotificationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationsManager.m; sourceTree = "<group>"; };
+		B8CD6F0A1BBB7E080041D146 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		B8CD6F0B1BBB7E080041D146 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		B8EEEFDA1BB32E1A0021FEE2 /* CalendarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarManager.h; sourceTree = "<group>"; };
 		B8EEEFDB1BB32E1A0021FEE2 /* CalendarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,6 +254,10 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				B8EEEFDA1BB32E1A0021FEE2 /* CalendarManager.h */,
 				B8EEEFDB1BB32E1A0021FEE2 /* CalendarManager.m */,
+				B8CD6EFC1BBB79190041D146 /* LocalNotificationsManager.h */,
+				B8CD6EFD1BBB79190041D146 /* LocalNotificationsManager.m */,
+				B8CD6F0A1BBB7E080041D146 /* MainViewController.h */,
+				B8CD6F0B1BBB7E080041D146 /* MainViewController.m */,
 			);
 			name = GreatPizzas;
 			sourceTree = "<group>";
@@ -526,6 +538,8 @@
 			files = (
 				00E356F31AD99517003FC87E /* GreatPizzasTests.m in Sources */,
 				B8EEEFDD1BB32E1A0021FEE2 /* CalendarManager.m in Sources */,
+				B8CD6EFF1BBB79190041D146 /* LocalNotificationsManager.m in Sources */,
+				B8CD6F0D1BBB7E080041D146 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +549,8 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				B8CD6EFE1BBB79190041D146 /* LocalNotificationsManager.m in Sources */,
+				B8CD6F0C1BBB7E080041D146 /* MainViewController.m in Sources */,
 				B8EEEFDC1BB32E1A0021FEE2 /* CalendarManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

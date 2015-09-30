@@ -8,7 +8,7 @@
  */
 
 #import "AppDelegate.h"
-
+#import "MainViewController.h"
 #import "RCTRootView.h"
 
 @implementation AppDelegate
@@ -51,7 +51,7 @@
                                                    launchOptions:launchOptions];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  UIViewController *rootViewController = [[UIViewController alloc] init];
+  MainViewController *rootViewController = [[MainViewController alloc] init];
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
