@@ -1,3 +1,4 @@
+require('./app/config/configure_android')();
 const React = require('react-native');
 const { AppRegistry, StyleSheet, Text, View, ToolbarAndroid, Component, Navigator, TouchableHighlight } = React;
 const SpecialsView = require('./app/domain/specials/specials_view');
@@ -5,9 +6,6 @@ const theme = require('./app/theme');
 const AccountView = require('./app/domain/account/account_view');
 const configureStore = require('./app/config/configureStore');
 const { Provider } = require('react-redux/native');
-
-const api = require('./app/config/api');
-api.domain = "http://10.0.2.2:4567";
 
 const store = configureStore();
 let _navigator = null;

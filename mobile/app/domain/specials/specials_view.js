@@ -5,6 +5,7 @@ const user = require('../account/session');
 const SpecialView = require('./special_view');
 const React = require('react-native');
 const theme = require('../../theme');
+const LocalNotifications = require('../../device_features/require_device_feature').LocalNotifications;
 const { View, Text, StyleSheet, ListView, Component } = React;
 
 const propTypes = {
@@ -46,14 +47,11 @@ class SpecialsView extends Component {
   }
 
   addToCalendar(special) {
-    var CalendarManager = require('react-native').NativeModules.CalendarManager;
-    CalendarManager.addEvent(
-      special.title,
-      '4 Privet Drive, Surrey',
-      new Date(special.availableOn),
-      function(error){
-        console.log(error);
-      });
+    LocalNotifications.create({
+      title: special.title,
+      body:  'Location: 4 Privet Drive, Surrey',
+      fireOn: new Date(special.availableOn)
+    });
   }
 
   orderSpecial(special) {
