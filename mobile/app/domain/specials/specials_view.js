@@ -5,7 +5,7 @@ const user = require('../account/session');
 const SpecialView = require('./special_view');
 const React = require('react-native');
 const theme = require('../../theme');
-const { LocalNotifications, showAlert } = require('../../device_features/require_device_feature');
+const { LocalNotifications, showAlert } = require('../../device_features/features');
 const { View, Text, StyleSheet, ListView, Component } = React;
 
 const propTypes = {
