@@ -5,7 +5,7 @@ const user = require('../account/session');
 const SpecialView = require('./special_view');
 const React = require('react-native');
 const theme = require('../../theme');
-const LocalNotifications = require('../../device_features/require_device_feature').LocalNotifications;
+const { LocalNotifications, showAlert } = require('../../device_features/require_device_feature');
 const { View, Text, StyleSheet, ListView, Component } = React;
 
 const propTypes = {
@@ -34,7 +34,7 @@ class SpecialsView extends Component {
         return (
             <SpecialView
               onOrderNow={() => this.orderSpecial(special)}
-              onRemindMe={() => this.addToCalendar(special)}
+              onRemindMe={() => this.addFutureNotification(special)}
               special={special}>
             </SpecialView>
         );
@@ -46,12 +46,17 @@ class SpecialsView extends Component {
     return (<View style={styles.container}>{content}</View>);
   }
 
-  addToCalendar(special) {
+  addFutureNotification(special) {
     LocalNotifications.create({
       title: special.title,
       body:  'Location: 4 Privet Drive, Surrey',
       fireOn: new Date(special.availableOn)
     });
+
+    const message = 'Reminder added for '
+        + special.title + ' which will notify you on '
+        + special.availableOn;
+    showAlert('Remind Me', message);
   }
 
   orderSpecial(special) {
