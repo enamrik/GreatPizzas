@@ -66,7 +66,7 @@ RCT_EXPORT_METHOD(findNotification:(NSString *)
 -(BOOL) isSameNotification:(UILocalNotification *)notificationA as:(UILocalNotification *)notificationB {
   return [notificationA.alertTitle isEqualToString:notificationB.alertTitle]
   && [notificationA.alertBody isEqualToString:notificationB.alertBody]
-  && [notificationA.fireDate isEqual:notificationB.fireDate];
+  && [notificationA.fireDate isEqualToDate:notificationB.fireDate];
 }
 
 @end
