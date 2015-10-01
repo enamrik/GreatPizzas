@@ -6,6 +6,7 @@
 *.iml
 .idea/
 .gradle/
+local.properties
 
 # Xcode
 #
