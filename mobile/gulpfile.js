@@ -18,6 +18,8 @@ gulp.task('tdd', function() {
   gulp.watch([ jestConfig.rootDir + "/**/*.js" ], [ 'test' ]);
 });
 
+//If any changes are made to the babelrc file, stop the packager, run this command and restart the packager
+//See: https://github.com/mjohnston/react-native-webpack-server/issues/63
 gulp.task('clear-packager-cache', function () {
   var tempDir = os.tmpdir();
 
