@@ -3,10 +3,22 @@ var jest = require('jest-cli');
 var os = require('os');
 var fs = require('fs');
 var path = require('path');
+var argv = require('yargs').argv;
+var change = require('gulp-change');
 
-var jestConfig = {
-  rootDir: 'app'
-};
+gulp.task('default', ['test']);
+
+argv["api-domain"] = argv["api-domain"] || 'http://localhost:4567';
+
+gulp.task('prepare-settings', function() {
+  return gulp.src('app/settings.js')
+    .pipe(change(function(content){
+      var settings = parseSettings(content);
+      settings["api-domain"] = argv["api-domain"];
+      return stringifySettings(settings);
+    }))
+    .pipe(gulp.dest('app'))
+});
 
 gulp.task('test', function(done) {
   jest.runCLI({ config : jestConfig }, ".", function() {
@@ -38,4 +50,15 @@ gulp.task('clear-packager-cache', function () {
   }
 });
 
-gulp.task('default', ['test']);
+function parseSettings(settingsString) {
+  var settings = settingsString.substring(settingsString.indexOf('=') + 1);
+  return JSON.parse(settings.substring(0, settings.lastIndexOf(';')));
+}
+
+function stringifySettings(settings){
+  return "module.exports=" + JSON.stringify(settings, null, ' ') + ";";
+}
+
+var jestConfig = {
+  rootDir: 'app'
+};

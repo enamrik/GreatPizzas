@@ -30,6 +30,8 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
-    "jest-cli": "^0.5.8"
+    "gulp-change": "^1.0.0",
+    "jest-cli": "^0.5.8",
+    "yargs": "^3.26.0"
   }
 }

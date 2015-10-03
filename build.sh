@@ -3,6 +3,9 @@
 echo "Change to iOS project directory..."
 cd mobile/ios
 
+# TODO these will be passed in from CI
+api_domain="http://www.codequest.net:4567"
+
 output_dir=$(echo "$PWD")
 artifacts_dir="${output_dir}/artifacts"
 archive_file="${artifacts_dir}/GreatPizzas.xcarchive"
@@ -17,7 +20,18 @@ if [ -d  $artifacts_dir ]; then
 fi
 mkdir $artifacts_dir
 
-echo "Building and Unit Testing..."
+echo "Running Jest unit tests for React Native..."
+gulp test
+
+echo "Preparing app settings from command line parameters..."
+gulp prepare-settings --api-domain $api_domain
+
+echo "Bundling JS for iOS..."
+react-native bundle
+
+echo "Bundling JS for Android...(pending - TODO)"
+
+echo "Building and running Unit Test for native iOS app..."
 set -o pipefail && xcodebuild \
   -workspace "GreatPizzas.xcworkspace" \
   -sdk iphonesimulator9.0 \
@@ -27,7 +41,7 @@ set -o pipefail && xcodebuild \
   CONFIGURATION_BUILD_DIR=$artifacts_dir \
   | xcpretty -c 
 
-echo "Creating Xcode archive..."
+echo "Creating Xcode archive for native iOS app..."
 set -o pipefail && xcodebuild \
   -workspace "GreatPizzas.xcworkspace" \
   -sdk iphoneos9.0 \
@@ -37,7 +51,7 @@ set -o pipefail && xcodebuild \
   | xcpretty -c 
 
 
-echo "Creating IPA package..."
+echo "Creating IPA package for native iOS app..."
 set -o pipefail && xcodebuild -exportArchive \
   -exportFormat IPA \
   -exportProvisioningProfile "iOSTeam Provisioning Profile: *" \
@@ -45,10 +59,10 @@ set -o pipefail && xcodebuild -exportArchive \
   -exportPath $ipa_file \
   | xcpretty -c 
 
-echo "Zip up Xcode debug symbols..."
+echo "Zip up Xcode debug symbols for native iOS app..."
 zip --recurse-paths --quiet "${dsym_zip_file}" "${dsym_file}"
 
-echo "Upload Xcode archive to HockeyApp..."
+echo "Upload IPA to HockeyApp..."
 curl \
   -F "status=2" \
   -F "notify=1" \
