@@ -1,6 +1,6 @@
 var React = require('react-native');
 var {StyleSheet,View,Image,Text,TouchableHighlight,Component} = React;
-var api = require('../../config/api');
+var api_domain = require("../../settings")["api-domain"];
 
 class SpecialView extends Component {
 
@@ -30,7 +30,7 @@ class SpecialView extends Component {
         <View style={styles.row}>
           <Image
             style={styles.backgroundImage}
-            source={{uri: api.domain + this.props.special.image}}>
+            source={{uri: api_domain + this.props.special.image}}>
             <View style={styles.topFillerArea}>
               { availableMessage }
             </View>

@@ -23,8 +23,8 @@ describe('auth', () => {
       var url = http.mock.calls[0][0];
       var payload = http.mock.calls[0][1];
 
-      var api = require('../../../config/api');
-      expect(url).toEqual(api.domain + '/login');
+      var api_domain = require("../../settings")["api-domain"];
+      expect(url).toEqual(api_domain + '/login');
       var credentials = JSON.parse(payload.body);
       expect(credentials.username).toEqual('username');
       expect(credentials.password).toEqual('password');

@@ -8,13 +8,13 @@ var change = require('gulp-change');
 
 gulp.task('default', ['test']);
 
-argv["api-domain"] = argv["api-domain"] || 'http://localhost:4567';
-
 gulp.task('prepare-settings', function() {
+  var api_domain = argv["api-domain"] || 'http://localhost:4567';
+
   return gulp.src('app/settings.js')
     .pipe(change(function(content){
       var settings = parseSettings(content);
-      settings["api-domain"] = argv["api-domain"];
+      settings["api-domain"] = api_domain;
       return stringifySettings(settings);
     }))
     .pipe(gulp.dest('app'))

@@ -1,6 +1,6 @@
 'use strict';
 
-const api = require('../../config/api');
+var api_domain = require("../../settings")["api-domain"];
 const user = require('../account/session');
 const SpecialView = require('./special_view');
 const React = require('react-native');
@@ -69,7 +69,7 @@ class SpecialsView extends Component {
   }
 
   loadSpecials() {
-    fetch(api.domain + '/specials')
+    fetch(api_domain + '/specials')
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({

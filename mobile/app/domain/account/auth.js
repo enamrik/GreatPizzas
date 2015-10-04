@@ -1,13 +1,13 @@
 'use strict';
 
-var api = require("../../config/api");
+var api_domain = require("../../settings")["api-domain"];
 var http = require("../../network/http");
 var session = require("./session");
 
 module.exports = {
   login: function(username, password) {
 
-      return http(api.domain + "/login", {
+      return http(api_domain + "/login", {
         method:"POST",
         headers: {
           'Accept': 'application/json',
