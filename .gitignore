@@ -10,7 +10,8 @@ local.properties
 
 # Xcode
 #
-mobile/ios/artifacts/
+ios_artifacts/
+android_artifacts/
 build/
 *.pbxuser
 !default.pbxuser

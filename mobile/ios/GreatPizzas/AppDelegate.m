@@ -17,10 +17,11 @@
 {
   NSURL *jsCodeLocation;
 
+#ifdef DEBUG
   /**
    * Loading JavaScript code - uncomment the one you want.
    *
-   * OPTION 1
+   * OPTION 2
    * Load from development server. Start the server from the repository root:
    *
    * $ npm start
@@ -30,11 +31,13 @@
    * `inet` value under `en0:`) and make sure your computer and iOS device are
    * on the same Wi-Fi network.
    */
-
-  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
-
+  
+  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios"];
+  
+#else
+  
   /**
-   * OPTION 2
+   * OPTION 1
    * Load from pre-bundled file on disk. To re-generate the static bundle
    * from the root of your project directory, run
    *
@@ -42,9 +45,11 @@
    *
    * see http://facebook.github.io/react-native/docs/runningondevice.html
    */
+  
+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
-//   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-
+#endif
+  
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"GreatPizzas"
                                                initialProperties:nil
