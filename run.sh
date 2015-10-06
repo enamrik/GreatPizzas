@@ -3,6 +3,8 @@ set -e
 
 # TODO these will be passed in from CI
 api_domain="http://www.codequest.net:8085"
+hockey_access_token="e00aae10df2b4c7f8cc2bbe68861e1f6"
+hockey_appid="66a3f92c923249b50d538579b9536d3d"
 
 root_dir=$(echo "$PWD")
 react_dir="${root_dir}/mobile"
@@ -134,8 +136,8 @@ function publish_ios_action() {
     -F "notes_type=0" \
     -F "ipa=@${ipa_file}" \
     -F "dsym=@${dsym_zip_file}" \
-    -H "X-HockeyAppToken: e00aae10df2b4c7f8cc2bbe68861e1f6" \
-    https://rink.hockeyapp.net/api/2/apps/66a3f92c923249b50d538579b9536d3d/app_versions/upload
+    -H "X-HockeyAppToken: ${hockey_access_token}" \
+    https://rink.hockeyapp.net/api/2/apps/$hockey_appid/app_versions/upload
 }
 
 function publish_action() {
