@@ -3,6 +3,7 @@ package com.sofree.backend;
 import org.joda.time.LocalDate;
 
 public class Special {
+    private String id;
     private String title;
     private String description;
     private String image;
@@ -10,7 +11,8 @@ public class Special {
 
     public Special() {}
 
-    public Special(String title, String description, String image, LocalDate availableOn) {
+    public Special(String id, String title, String description, String image, LocalDate availableOn) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.image = image;
@@ -31,5 +33,9 @@ public class Special {
 
     public LocalDate getAvailableOn() {
         return availableOn;
+    }
+
+    public String getId() {
+        return id;
     }
 }
