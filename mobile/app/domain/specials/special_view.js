@@ -1,5 +1,5 @@
 var React = require('react-native');
-var {StyleSheet,View,Image,Text,TouchableHighlight,Component} = React;
+var { StyleSheet, View, Image, Text, TouchableOpacity, Component } = React;
 var api_domain = require("../../settings")["api-domain"];
 
 class SpecialView extends Component {
@@ -7,17 +7,16 @@ class SpecialView extends Component {
   render() {
     const notice = this.isAvailableNow(this.props.special)
       ?
-      <TouchableHighlight onPress={() => this.props.onOrderNow(this.props.special)}>
+      <TouchableOpacity onPress={() => this.props.onOrderNow(this.props.special)}>
         <View style={styles.orderButton}><Text style={styles.orderButtonText}>Order Now</Text></View>
-      </TouchableHighlight>
+      </TouchableOpacity>
       :
-      <TouchableHighlight
-        onPress={() => this.props.onRemindMe(this.props.special)}
-        >
+      <TouchableOpacity
+        onPress={() => this.props.onRemindMe(this.props.special)}>
         <View style={styles.availability}>
           <Text style={styles.availabilityText}>Remind Me</Text>
         </View>
-      </TouchableHighlight>;
+      </TouchableOpacity>;
 
     const availableMessage = this.isAvailableNow(this.props.special)
       ?null
@@ -27,21 +26,24 @@ class SpecialView extends Component {
       </View>;
 
     return (
+      <TouchableOpacity
+        onPress={() => this.props.onRowPress(this.props.special)}>
         <View style={styles.row}>
-          <Image
-            style={styles.backgroundImage}
-            source={{uri: api_domain + this.props.special.image}}>
-            <View style={styles.topFillerArea}>
-              { availableMessage }
-            </View>
-            <View style={styles.bottomBar}>
-              <Text style={styles.description}>
-                {this.props.special.description}
-              </Text>
-              { notice }
-            </View>
-          </Image>
+            <Image
+              style={styles.backgroundImage}
+              source={{uri: api_domain + this.props.special.image}}>
+              <View style={styles.topFillerArea}>
+                { availableMessage }
+              </View>
+              <View style={styles.bottomBar}>
+                <Text style={styles.description}>
+                  {this.props.special.description}
+                </Text>
+                { notice }
+              </View>
+            </Image>
         </View>
+      </TouchableOpacity>
     );
   }
 

@@ -1,10 +1,11 @@
 'use strict';
 
-var api_domain = require("../../settings")["api-domain"];
-const user = require('../account/session');
-const SpecialView = require('./special_view');
-const React = require('react-native');
-const theme = require('../../theme');
+import user from '../account/session'
+import SpecialView from './special_view'
+import React from 'react-native'
+import SpecialsDetail from './specials_detail'
+import theme from '../../theme'
+const api_domain = require("../../settings")["api-domain"];
 const { LocalNotifications, showAlert } = require('../../device_features/features');
 const { View, Text, StyleSheet, ListView, Component } = React;
 
@@ -29,12 +30,14 @@ class SpecialsView extends Component {
     const content = this.state.dataSource.getRowCount() > 0
       ?
     <ListView
+      automaticallyAdjustContentInsets={false}
       dataSource={this.state.dataSource}
       renderRow={(special) => {
         return (
             <SpecialView
-              onOrderNow={() => this.orderSpecial(special)}
-              onRemindMe={() => this.addFutureNotification(special)}
+              onOrderNow={this.orderSpecial.bind(this)}
+              onRemindMe={this.addFutureNotification.bind(this)}
+              onRowPress={this.goToDetails.bind(this)}
               special={special}>
             </SpecialView>
         );
@@ -57,6 +60,13 @@ class SpecialsView extends Component {
         + special.title + ' which will notify you on '
         + special.availableOn;
     showAlert('Remind Me', message);
+  }
+
+  goToDetails(special) {
+    this.props.navigator.push({
+      component: SpecialsDetail,
+      title: special.title
+    })
   }
 
   orderSpecial(special) {

@@ -1,7 +1,7 @@
 import React from 'react-native';
 import getNavigationBar from './navigation_bar';
 import theme from '../../theme'
-const { Component, View, StyleSheet } = React;
+const { Component, View, StyleSheet, Navigator } = React;
 
 export default class extends Component {
   render() {

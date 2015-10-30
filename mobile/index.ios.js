@@ -8,6 +8,7 @@ const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS, StyleSheet 
 const { Provider } = require('react-redux/native');
 const configureStore = require('./app/config/configureStore');
 const theme = require('./app/theme');
+const Navigator = require('./app/form_controls/navigation/navigator');
 
 const store = configureStore();
 StatusBarIOS.setStyle('light-content');
@@ -24,16 +25,22 @@ class GreatPizzas extends Component {
       <View style={styles.container}>
       <TabBarIOS
         tintColor="white"
-        barTintColor={theme.mainColor}
-      >
+        barTintColor={theme.mainColor}>
         <TabBarIOS.Item title="Specials"
                         icon="specials_tabbar_icon"
                         selected={this.state.selectedTab === tabs.specials}
                         onPress={() => this.goToTab(tabs.specials)}>
-          <SpecialsView
-            goToAccount={() => this.goToTab(tabs.account)}
-            goToOrder={() => this.goToTab(tabs.order)}>
-          </SpecialsView>
+
+          <Navigator
+            style={{marginBottom:50}}
+            initialRoute={{
+              component: SpecialsView,
+              title:'Specials',
+              passProps: {
+                goToAccount:() => this.goToTab(tabs.account),
+                goToOrder:() => this.goToTab(tabs.order)
+              }
+            }} />
         </TabBarIOS.Item>
         <TabBarIOS.Item title="Order"
                         icon="order_tabbar_icon"
@@ -64,8 +71,7 @@ class GreatPizzas extends Component {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    paddingTop:20,
-    backgroundColor:theme.mainColor
+    backgroundColor:theme.mainColor,
   }
 });
 
