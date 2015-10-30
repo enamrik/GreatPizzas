@@ -85,9 +85,9 @@ function test_ios_action() {
   header "Building and running Unit Test for any native iOS code..."
   run_xcodebuild \
     -workspace "GreatPizzas.xcworkspace" \
-    -sdk iphonesimulator9.0 \
+    -sdk iphonesimulator9.1 \
     -configuration Debug \
-    -destination "platform=iOS Simulator,name=iPhone 6,OS=9.0" \
+    -destination "platform=iOS Simulator,name=iPhone 6,OS=9.1" \
     -scheme "GreatPizzas" clean test \
     CONFIGURATION_BUILD_DIR=$ios_artifacts_dir
 }
@@ -96,7 +96,7 @@ function bundle_js_for_ios() {
   cd $react_dir
 
   header "Preparing app settings for iOS..."
-  gulp prepare-settings --api-domain $api_domain
+  gulp prepare-settings -a $api_domain
 
   header "Bundling JS for iOS..."
   react-native bundle
@@ -110,7 +110,7 @@ function build_ios_publishables() {
   step "Creating Xcode archive..."
   run_xcodebuild \
     -workspace "GreatPizzas.xcworkspace" \
-    -sdk iphoneos9.0 \
+    -sdk iphoneos9.1 \
     -scheme "GreatPizzas" archive \
     -configuration Release \
     -archivePath $archive_file

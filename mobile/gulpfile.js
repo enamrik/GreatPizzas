@@ -9,8 +9,10 @@ require('gulp-command')(gulp);
 
 gulp.task('default', ['test']);
 
-gulp.task('prepare-settings', function() {
-  var api_domain = argv["api-domain"] || 'http://localhost:4567';
+gulp
+  .option('prepare-settings', '-a, --api', 'Specify backend api domain')
+  .task('prepare-settings', function() {
+  var api_domain = this.flags.api || 'http://localhost:4567';
 
   return gulp.src('app/settings.js')
     .pipe(change(function(content){
@@ -24,8 +26,8 @@ gulp.task('prepare-settings', function() {
 gulp
   .option('test', '-f, --file', 'Specify full path to file')
   .task('test', function(done) {
-    var args = this.flags.file ? [this.flags.file] : [];
-    jest.runCLI({ _ : args, config : jestConfig }, ".", function() {
+    var args = this.flags.file ? { _ : [this.flags.file] } : {};
+    jest.runCLI(Object.assign({}, {config : jestConfig }, args), ".", function() {
       done();
     });
 });
