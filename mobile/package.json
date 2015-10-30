@@ -9,9 +9,9 @@
   "dependencies": {
     "gulp-command": "^0.1.2",
     "path": "^0.12.7",
-    "react-native": "^0.11.4",
-    "react-redux": "^3.0.0",
-    "redux": "^3.0.2",
+    "react-native": "^0.13.2",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4",
     "redux-thunk": "^1.0.0"
   },
   "jest": {
@@ -32,7 +32,7 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-change": "^1.0.0",
-    "jest-cli": "^0.5.8",
+    "jest-cli": "^0.6.1",
     "yargs": "^3.26.0"
   }
 }
