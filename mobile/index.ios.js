@@ -6,7 +6,7 @@ const SpecialsView = require('./app/domain/specials/specials_view');
 const React = require('react-native');
 const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS, StyleSheet } = React;
 const { Provider } = require('react-redux/native');
-const configureStore = require('./app/config/configureStore');
+const configureStore = require('./app/config/configure_store');
 const theme = require('./app/theme');
 const Navigator = require('./app/form_controls/navigation/navigator');
 
