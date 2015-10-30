@@ -5,6 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var argv = require('yargs').argv;
 var change = require('gulp-change');
+require('gulp-command')(gulp);
 
 gulp.task('default', ['test']);
 
@@ -20,10 +21,13 @@ gulp.task('prepare-settings', function() {
     .pipe(gulp.dest('app'))
 });
 
-gulp.task('test', function(done) {
-  jest.runCLI({ config : jestConfig }, ".", function() {
-    done();
-  });
+gulp
+  .option('test', '-f, --file', 'Specify full path to file')
+  .task('test', function(done) {
+    var args = this.flags.file ? [this.flags.file] : [];
+    jest.runCLI({ _ : args, config : jestConfig }, ".", function() {
+      done();
+    });
 });
 
 gulp.task('tdd', function() {
