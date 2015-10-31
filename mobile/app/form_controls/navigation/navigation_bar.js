@@ -1,7 +1,7 @@
 import React from 'react-native';
 import theme from '../../theme';
 import BackNavBarItem from './back_navbar_item'
-const { Navigator, TouchableOpacity, Text, StyleSheet } = React;
+const { View, Navigator, TouchableOpacity, Text, StyleSheet } = React;
 
 export default getNavBarRouter = () => {
   const routerMapper =  {
@@ -9,7 +9,8 @@ export default getNavBarRouter = () => {
       if (index === 0) {
         return null;
       }
-      return <BackNavBarItem navigator={navigator} style={styles.left_button} />
+      var prevRoute = navigator.getCurrentRoutes()[index -1];
+      return <BackNavBarItem navigator={navigator} title={prevRoute.title} style={styles.left_button} />
     },
 
     RightButton: function (route, navigator, index, navState) {
@@ -17,7 +18,11 @@ export default getNavBarRouter = () => {
     },
 
     Title: function (route, navigator, index, navState) {
-      return <Text numberOfLines={1} style={styles.title}>{route.title}</Text>;
+      return (
+        <View style={styles.title_container}>
+          <Text numberOfLines={1} style={styles.title}>{route.title}</Text>
+        </View>
+      );
     }
   };
 
@@ -28,27 +33,28 @@ export default getNavBarRouter = () => {
   );
 };
 
-const nav_item_width = 70;
 
 const styles = StyleSheet.create({
   navBar: {
     backgroundColor: theme.mainColor
   },
+  title_container: {
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center'
+  },
   title: {
-    marginTop:10,
     color: '#ffffff',
     fontWeight: '500',
     fontSize: 16,
-    marginLeft:nav_item_width,
-    marginRight:nav_item_width
+    marginLeft:theme.ios.nav_item_width,
+    marginRight:theme.ios.nav_item_width
   },
   right_button: {
-    flex:1,
-    width:nav_item_width
+    width:theme.ios.nav_item_width
   },
   left_button: {
-    flex:1,
-    width:nav_item_width
+    width:theme.ios.nav_item_width
   }
 });
 

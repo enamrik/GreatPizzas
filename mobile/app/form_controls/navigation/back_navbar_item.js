@@ -1,5 +1,6 @@
+import theme from '../../theme'
 import React from 'react-native'
-const { Component, StyleSheet, TouchableOpacity, Text, Image } = React;
+const { View, Component, StyleSheet, TouchableOpacity, Text, Image } = React;
 
 export default class extends Component {
   render() {
@@ -9,6 +10,7 @@ export default class extends Component {
         onPress={() => this.props.navigator.pop()}>
         <Image style={styles.button}
                source={require('image!navbar_item_back')}/>
+        <Text numberOfLines={1} style={styles.title}>{this.props.title}</Text>
       </TouchableOpacity>
     );
   }
@@ -17,12 +19,18 @@ export default class extends Component {
 var styles = StyleSheet.create({
   container: {
     flex:1,
-    paddingTop: 10,
+    flexDirection:'row',
     justifyContent:'flex-start',
-    alignItems:'flex-start',
-    paddingLeft:16
+    alignItems:'center',
+    paddingLeft:8
   },
   button: {
     tintColor:'#fff'
+  },
+  title: {
+    color:'#fff',
+    fontSize:10,
+    paddingLeft:5,
+    width:theme.ios.nav_item_width - 20
   }
 });
