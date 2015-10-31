@@ -3,7 +3,6 @@ var jest = require('jest-cli');
 var os = require('os');
 var fs = require('fs');
 var path = require('path');
-var argv = require('yargs').argv;
 var change = require('gulp-change');
 require('gulp-command')(gulp);
 
