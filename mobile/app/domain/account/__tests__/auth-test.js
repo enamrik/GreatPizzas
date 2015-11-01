@@ -1,8 +1,8 @@
 'use strict';
 
-jest.dontMock('../auth');
-
 describe('auth', () => {
+  let auth, httpStub, settingsStub, startNewSessionStub;
+
   const authResponse = {
     "user": {
       "id": "8f7d1b70-f946-4ad2-8590-c6575d4bbf53",
@@ -13,46 +13,52 @@ describe('auth', () => {
     "token": "8cd283d8b7bacc277f2bae5e26ce6d1e"
   };
 
-  pit('should make authentication call to backend', () => {
-    var http = require('../../../network/http');
-    http.mockImplementation((cb) => Promise.resolve(authResponse));
+  beforeEach(() => {
+    httpStub = sinon.stub();
+    settingsStub = {'api-domain': 'stuff'};
+    startNewSessionStub = sinon.stub();
 
-    var auth = require('../auth');
+    auth = require('inject!domain/account/auth')({
+      'settings':  settingsStub,
+      'network/http': httpStub,
+      'domain/account/session': { startNewSession : startNewSessionStub }
+    });
+  });
+
+  it('should make authentication call to backend', () => {
+    httpStub.returns(Promise.resolve(authResponse));
+
     return auth.login('username', 'password').then(() => {
+      var payload = httpStub.getCall(0).args[1];
 
-      var url = http.mock.calls[0][0];
-      var payload = http.mock.calls[0][1];
+      var url = httpStub.getCall(0).args[0];
+      expect(url).to.eq(settingsStub["api-domain"] + '/login');
 
-      var api_domain = require("../../../settings")["api-domain"];
-      expect(url).toEqual(api_domain + '/login');
       var credentials = JSON.parse(payload.body);
-      expect(credentials.username).toEqual('username');
-      expect(credentials.password).toEqual('password');
-      expect(payload.headers['Accept']).toEqual('application/json');
-      expect(payload.headers['Content-Type']).toEqual('application/json');
+      expect(credentials.username).to.eq('username');
+      expect(credentials.password).to.eq('password');
+
+      expect(payload.headers['Accept']).to.eq('application/json');
+      expect(payload.headers['Content-Type']).to.eq('application/json');
     });
   });
 
-  pit('should create user session on successful authentication', () => {
-   var http = require('../../../network/http');
-    http.mockImplementation((cb) => Promise.resolve(authResponse));
+  it('should create user session on successful authentication', () => {
+    httpStub.returns(Promise.resolve(authResponse));
 
-    return require('../auth').login('username', 'password').then(() => {
-      var session = require('../session');
-      var user = session.startNewSession.mock.calls[0][0];
-      expect(user).toEqual(authResponse.user);
-      var token = session.startNewSession.mock.calls[0][1];
-      expect(token).toEqual(authResponse.token);
+    return auth.login('username', 'password').then(() => {
+      var user = startNewSessionStub.getCall(0).args[0];
+      expect(user).to.eq(authResponse.user);
+      var token = startNewSessionStub.getCall(0).args[1];
+      expect(token).to.eq(authResponse.token);
     });
   });
 
-  pit('should not create user session on failed authentication', () => {
-    var http = require('../../../network/http');
-    http.mockImplementation((cb) => Promise.reject());
+  it('should not create user session on failed authentication', () => {
+    httpStub.returns(Promise.reject(new Error()));
 
-    return require('../auth').login('username', 'password').then(() => {
-      var session = require('../session');
-      expect(session.startNewSession).not.toBeCalled();
+    return auth.login('username', 'password').catch(() => {
+      expect(startNewSessionStub).not.to.have.been.called;
     });
   });
 });

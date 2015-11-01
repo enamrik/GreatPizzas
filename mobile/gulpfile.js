@@ -22,19 +22,6 @@ gulp
     .pipe(gulp.dest('app'))
 });
 
-gulp
-  .option('test', '-f, --file', 'Specify full path to file')
-  .task('test', function(done) {
-    var args = this.flags.file ? { _ : [this.flags.file] } : {};
-    jest.runCLI(Object.assign({}, {config : jestConfig }, args), ".", function() {
-      done();
-    });
-});
-
-gulp.task('tdd', function() {
-  gulp.watch([ jestConfig.rootDir + "/**/*.js" ], [ 'test' ]);
-});
-
 //If any changes are made to the babelrc file, stop the packager, run this command and restart the packager
 //See: https://github.com/mjohnston/react-native-webpack-server/issues/63
 gulp.task('clear-packager-cache', function () {

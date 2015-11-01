@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "test": "karma start",
     "start": "node_modules/.bin/rnws start",
-    "test": "gulp test",
     "bundle": "node_modules/.bin/rnws bundle"
   },
   "dependencies": {
@@ -16,28 +16,21 @@
     "redux": "^3.0.4",
     "redux-thunk": "^1.0.0"
   },
-  "jest": {
-    "scriptPreprocessor": "node_modules/react-native/jestSupport/scriptPreprocess.js",
-    "setupEnvScriptFile": "node_modules/react-native/jestSupport/env.js",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "packager/react-packager/src/Activity/"
-    ],
-    "testFileExtensions": [
-      "js"
-    ],
-    "unmockedModulePathPatterns": [
-      "promise",
-      "source-map"
-    ]
-  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-change": "^1.0.0",
-    "jest-cli": "^0.6.1",
     "react-native-webpack-server": "^0.8.0",
     "webpack": "^1.12.2",
     "babel-core": "^5.8.32",
-    "babel-loader": "^5.3.2"
+    "babel-loader": "^5.3.2",
+    "chai": "^3.4.0",
+    "sinon-chai": "^2.8.0",
+    "mocha": "^2.3.3",
+    "karma": "^0.13.14",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-mocha": "^0.2.0",
+    "karma-sourcemap-loader": "^0.3.6",
+    "karma-webpack": "^1.7.0",
+    "inject-loader": "^2.0.1"
   }
 }
