@@ -1,4 +1,3 @@
-require('./config/configure_android')();
 const React = require('react-native');
 const { AppRegistry, StyleSheet, Text, View, ToolbarAndroid, Component, Navigator, TouchableHighlight } = React;
 const SpecialsView = require('./domain/specials/specials_view');

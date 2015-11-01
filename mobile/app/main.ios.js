@@ -1,6 +1,5 @@
 'use strict';
 
-require('./config/configure_ios')();
 const AccountView = require('./domain/account/account_view');
 const SpecialsView = require('./domain/specials/specials_view');
 const React = require('react-native');
