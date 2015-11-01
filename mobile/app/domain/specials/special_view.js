@@ -47,16 +47,23 @@ class SpecialView extends Component {
     );
   }
 
-  formatDate(date) {
-    const month = date[1];
-    const day = date[2];
-    return month + "/" + day;
+  formatDate(dateString) {
+    const chopOffYearInISOString = date => date.substring(dateString.indexOf('-') + 1);
+    return chopOffYearInISOString(dateString).replace('-', '/');
   }
 
   isAvailableNow(special) {
-    var today = new Date().setHours(0,0,0,0);
-    var availableOn = new Date(special.availableOn).setHours(0,0,0,0);
-   return today == availableOn;
+    return this.getNowLocalDateOnlyString() == special.availableOn;
+  }
+
+  getNowLocalDateOnlyString() {
+    let today = new Date();
+    let dayOfMonth = today.getDate().toString().length == 1
+        ? "0" + today.getDate()
+        : today.getDate();
+    let monthOfYear = today.getMonth() + 1;
+
+    return today.getFullYear() + "-" + monthOfYear + "-" + dayOfMonth;
   }
 }
 

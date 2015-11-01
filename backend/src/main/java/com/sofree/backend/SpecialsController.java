@@ -1,5 +1,8 @@
 package com.sofree.backend;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,21 +58,12 @@ public class SpecialsController {
        return ResponseEntity.created(URI.create("specials/" + special.getId())).build();
     }
 
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
     static class SpecialPayload {
         private String description;
         private String title;
         private LocalDate availableOn;
-
-        public String getDescription() {
-            return description;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public LocalDate getAvailableOn() {
-            return availableOn;
-        }
     }
 }
