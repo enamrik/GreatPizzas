@@ -1,10 +1,10 @@
-require('./app/config/configure_android')();
+require('./config/configure_android')();
 const React = require('react-native');
 const { AppRegistry, StyleSheet, Text, View, ToolbarAndroid, Component, Navigator, TouchableHighlight } = React;
-const SpecialsView = require('./app/domain/specials/specials_view');
-const theme = require('./app/theme');
-const AccountView = require('./app/domain/account/account_view');
-const configureStore = require('./app/config/configure_store');
+const SpecialsView = require('./domain/specials/specials_view');
+const theme = require('./theme');
+const AccountView = require('./domain/account/account_view');
+const configureStore = require('./config/configure_store');
 const { Provider } = require('react-redux/native');
 
 const store = configureStore();

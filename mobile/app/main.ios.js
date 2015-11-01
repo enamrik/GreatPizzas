@@ -1,14 +1,14 @@
 'use strict';
 
-require('./app/config/configure_ios')();
-const AccountView = require('./app/domain/account/account_view');
-const SpecialsView = require('./app/domain/specials/specials_view');
+require('./config/configure_ios')();
+const AccountView = require('./domain/account/account_view');
+const SpecialsView = require('./domain/specials/specials_view');
 const React = require('react-native');
 const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS, StyleSheet } = React;
 const { Provider } = require('react-redux/native');
-const configureStore = require('./app/config/configure_store');
-const theme = require('./app/theme');
-const Navigator = require('./app/form_controls/navigation/navigator');
+const configureStore = require('./config/configure_store');
+const theme = require('./theme');
+const Navigator = require('./form_controls/navigation/navigator');
 
 const store = configureStore();
 StatusBarIOS.setStyle('light-content');
