@@ -4,7 +4,7 @@ const AccountDetailsView = require('./account_details_view');
 const LoginView = require('./login_view');
 const user = require('./session');
 const auth = require('./auth');
-const { connect } = require('react-redux/native');
+const { connect } = require('react-redux');
 const { bindActionCreators } = require('redux');
 const accountActions = require('./actions');
 

@@ -5,7 +5,7 @@ const SpecialsView = require('./app/domain/specials/specials_view');
 const theme = require('./app/theme');
 const AccountView = require('./app/domain/account/account_view');
 const configureStore = require('./app/config/configure_store');
-const { Provider } = require('react-redux/native');
+const { Provider } = require('react-redux');
 
 const store = configureStore();
 let _navigator = null;

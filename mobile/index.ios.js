@@ -5,7 +5,7 @@ const AccountView = require('./app/domain/account/account_view');
 const SpecialsView = require('./app/domain/specials/specials_view');
 const React = require('react-native');
 const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS, StyleSheet } = React;
-const { Provider } = require('react-redux/native');
+const { Provider } = require('react-redux');
 const configureStore = require('./app/config/configure_store');
 const theme = require('./app/theme');
 const Navigator = require('./app/form_controls/navigation/navigator');
@@ -60,7 +60,7 @@ class GreatPizzas extends Component {
       </View>
     );
 
-    return <Provider store={ store }>{() => content }</Provider>;
+    return <Provider store={ store }>{ content }</Provider>;
   }
 
   goToTab(tabName) {
