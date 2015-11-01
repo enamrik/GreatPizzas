@@ -27,7 +27,7 @@ class GreatPizzas extends Component {
         tintColor="white"
         barTintColor={theme.mainColor}>
         <TabBarIOS.Item title="Specials"
-                        icon="specials_tabbar_icon"
+                        icon={require("image!specials_tabbar_icon")}
                         selected={this.state.selectedTab === tabs.specials}
                         onPress={() => this.goToTab(tabs.specials)}>
 
@@ -43,7 +43,7 @@ class GreatPizzas extends Component {
             }} />
         </TabBarIOS.Item>
         <TabBarIOS.Item title="Order"
-                        icon="order_tabbar_icon"
+                        icon={require("image!order_tabbar_icon")}
                         selected={this.state.selectedTab === tabs.order}
                         onPress={() => this.goToTab(tabs.order)}>
           <View style={{flex:1, paddingTop:60, backgroundColor:theme.mainColor}}>
@@ -51,7 +51,7 @@ class GreatPizzas extends Component {
           </View>
         </TabBarIOS.Item>
         <TabBarIOS.Item title="Account"
-                        icon="account_tabbar_icon"
+                        icon={require("image!account_tabbar_icon")}
                         selected={this.state.selectedTab === tabs.account}
                         onPress={() => this.goToTab(tabs.account)}>
           <AccountView></AccountView>
