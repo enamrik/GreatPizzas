@@ -1,6 +1,6 @@
-const React = require('react-native');
+import user from 'domain/account/session'
+import React from 'react-native'
 const { View, Text, Component, StyleSheet } = React;
-const user = require('./session');
 
 class AccountDetails extends Component {
   render() {

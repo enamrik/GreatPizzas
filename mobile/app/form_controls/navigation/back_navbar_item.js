@@ -1,4 +1,4 @@
-import theme from '../../theme'
+import theme from 'theme'
 import React from 'react-native'
 const { View, Component, StyleSheet, TouchableOpacity, Text, Image } = React;
 

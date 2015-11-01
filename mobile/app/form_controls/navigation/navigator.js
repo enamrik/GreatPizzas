@@ -1,6 +1,6 @@
 import React from 'react-native';
-import getNavigationBar from './navigation_bar';
-import theme from '../../theme'
+import getNavigationBar from 'form_controls/navigation/navigation_bar';
+import theme from 'theme'
 const { Component, View, StyleSheet, Navigator } = React;
 
 export default class extends Component {

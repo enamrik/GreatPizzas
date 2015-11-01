@@ -1,6 +1,6 @@
-const accountReducers = require('../domain/account/reducers');
-const { createStore, combineReducers, applyMiddleware } = require('redux');
-const thunk = require('redux-thunk');
+import accountReducers from 'domain/account/reducers'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 

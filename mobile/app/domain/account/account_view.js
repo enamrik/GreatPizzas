@@ -1,12 +1,13 @@
-const React = require('react-native');
+import React from 'react-native'
+import AccountDetailsView from 'domain/account/account_details_view'
+import LoginView from 'domain/account/login_view'
+import user from 'domain/account/session'
+import auth from 'domain/account/auth'
+import { connect } from 'react-redux/native'
+import { bindActionCreators } from 'redux'
+import accountActions from 'domain/account/actions'
+
 const { View, StyleSheet, Component } = React;
-const AccountDetailsView = require('./account_details_view');
-const LoginView = require('./login_view');
-const user = require('./session');
-const auth = require('./auth');
-const { connect } = require('react-redux/native');
-const { bindActionCreators } = require('redux');
-const accountActions = require('./actions');
 
 class AccountView extends Component {
 

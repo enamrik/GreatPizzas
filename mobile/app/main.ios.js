@@ -1,13 +1,14 @@
 'use strict';
 
-const AccountView = require('./domain/account/account_view');
-const SpecialsView = require('./domain/specials/specials_view');
-const React = require('react-native');
+import AccountView from 'domain/account/account_view'
+import SpecialsView from 'domain/specials/specials_view'
+import React from 'react-native'
+import configureStore from 'config/configure_store'
+import theme from 'theme'
+import Navigator from 'form_controls/navigation/navigator'
+import { Provider } from 'react-redux/native'
+
 const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS, StyleSheet } = React;
-const { Provider } = require('react-redux/native');
-const configureStore = require('./config/configure_store');
-const theme = require('./theme');
-const Navigator = require('./form_controls/navigation/navigator');
 
 const store = configureStore();
 StatusBarIOS.setStyle('light-content');

@@ -1,4 +1,4 @@
-var accountActions = require('./actions');
+import accountActions from 'domain/account/actions'
 
 function account(state = {}, action = "") {
   switch (action.type) {

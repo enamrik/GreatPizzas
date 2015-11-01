@@ -1,6 +1,6 @@
 var React = require('react-native');
 var { StyleSheet, View, Image, Text, TouchableOpacity, Component } = React;
-var api_domain = require("../../settings")["api-domain"];
+var api_domain = require("settings")["api-domain"];
 
 class SpecialView extends Component {
 

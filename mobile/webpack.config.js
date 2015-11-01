@@ -14,6 +14,11 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].js'
   },
+  resolve: {
+    //allow using require paths relative to root rather than relative to path
+    root: path.resolve('./app'),
+    extensions: ['', '.js']
+  },
   module: {
     loaders: [
       //using babelrc, transpile all es2015 code

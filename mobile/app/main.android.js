@@ -1,10 +1,11 @@
-const React = require('react-native');
+import AccountView from 'domain/account/account_view'
+import SpecialsView from 'domain/specials/specials_view'
+import React from 'react-native'
+import configureStore from 'config/configure_store'
+import theme from 'theme'
+import { Provider } from 'react-redux/native'
+
 const { AppRegistry, StyleSheet, Text, View, ToolbarAndroid, Component, Navigator, TouchableHighlight } = React;
-const SpecialsView = require('./domain/specials/specials_view');
-const theme = require('./theme');
-const AccountView = require('./domain/account/account_view');
-const configureStore = require('./config/configure_store');
-const { Provider } = require('react-redux/native');
 
 const store = configureStore();
 let _navigator = null;

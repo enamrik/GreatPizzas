@@ -1,4 +1,5 @@
-const auth = require('./auth');
+import auth from 'domain/account/auth'
+
 const actions = exports = module.exports;
 
 actions.LOGIN_ATTEMPTED = 'LOGIN_ATTEMPTED';

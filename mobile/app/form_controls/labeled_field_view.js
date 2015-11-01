@@ -1,6 +1,7 @@
-var React = require('react-native');
-const theme = require('../theme');
-var { View, Text, TextInput, StyleSheet } = React;
+import React from 'react-native'
+import theme from 'theme'
+
+const { View, Text, TextInput, StyleSheet } = React;
 
 var LabeledFieldView = React.createClass({
   propTypes: {

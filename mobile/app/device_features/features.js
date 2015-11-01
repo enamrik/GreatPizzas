@@ -1,6 +1,6 @@
 var path = require('path');
 
 module.exports = {
-    LocalNotifications: require('./ios/local_notifications'),
-    showAlert: require('./ios/show_alert')
+    LocalNotifications: require('device_features/ios/local_notifications'),
+    showAlert: require('device_features/ios/show_alert')
 };
