@@ -24,5 +24,9 @@ module.exports = {
       //using babelrc, transpile all es2015 code
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ }
     ]
-  }
+  },
+  plugins: [
+    new webpack.IgnorePlugin(/react-native/),
+    new webpack.IgnorePlugin(/image!/)
+  ]
 };

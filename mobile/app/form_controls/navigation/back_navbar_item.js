@@ -8,9 +8,9 @@ export default class extends Component {
       <TouchableOpacity
         style={[this.props.style, styles.container]}
         onPress={() => this.props.navigator.pop()}>
-        <Image style={styles.button}
+        <Image testId="image" style={styles.button}
                source={require('image!navbar_item_back')}/>
-        <Text numberOfLines={1} style={styles.title}>{this.props.title}</Text>
+        <Text testId="title" numberOfLines={1} style={styles.title}>{this.props.title}</Text>
       </TouchableOpacity>
     );
   }

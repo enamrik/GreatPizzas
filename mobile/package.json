@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "test": "karma start",
+    "test-session": "karma start --single-run=false",
     "start": "node_modules/.bin/rnws start",
     "bundle": "node_modules/.bin/rnws bundle"
   },
