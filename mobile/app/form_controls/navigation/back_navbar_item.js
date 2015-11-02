@@ -25,7 +25,9 @@ var styles = StyleSheet.create({
     paddingLeft:8
   },
   button: {
-    tintColor:'#fff'
+    tintColor:'#fff',
+    height: 20,
+    width:12
   },
   title: {
     color:'#fff',
