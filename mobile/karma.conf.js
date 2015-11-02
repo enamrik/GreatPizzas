@@ -15,7 +15,13 @@ module.exports = function (config) {
       'tests.webpack.js': ['webpack', 'sourcemap']
     },
     reporters: [ 'dots' ],
-    webpack: Object.assign({}, webpackConfig, {devtool: 'inline-source-map'}),
+    webpack: Object.assign({}, webpackConfig, {
+      devtool: 'inline-source-map',
+      plugins: [
+        new webpack.IgnorePlugin(/react-native/),
+        new webpack.IgnorePlugin(/image!/)
+      ]
+    }),
     webpackServer: {
       noInfo: true
     }
