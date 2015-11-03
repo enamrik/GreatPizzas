@@ -1,4 +1,4 @@
-import accountActions from 'domain/account/actions'
+import accountActions from 'great_pizzas/account/actions'
 
 function account(state = {}, action = "") {
   switch (action.type) {

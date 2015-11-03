@@ -1,9 +1,9 @@
 'use strict';
 
-import user from 'domain/account/session'
-import SpecialView from 'domain/specials/special_view'
+import user from '..//account/session'
+import SpecialView from '..//specials/special_view'
 import React from 'react-native'
-import SpecialsDetail from 'domain/specials/specials_detail'
+import SpecialsDetail from '..//specials/specials_detail'
 import theme from 'theme'
 const api_domain = require("settings")["api-domain"];
 const { LocalNotifications, showAlert } = require('device_features/features');

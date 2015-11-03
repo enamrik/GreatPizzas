@@ -18,10 +18,10 @@ describe('auth', () => {
     settingsStub = {'api-domain': 'stuff'};
     startNewSessionStub = sinon.stub();
 
-    auth = require('inject!domain/account/auth')({
+    auth = require('inject!great_pizzas/account/auth')({
       'settings':  settingsStub,
       'network/http': httpStub,
-      'domain/account/session': { startNewSession : startNewSessionStub }
+      'great_pizzas/account/session': { startNewSession : startNewSessionStub }
     });
   });
 

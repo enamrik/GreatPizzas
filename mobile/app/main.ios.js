@@ -1,7 +1,7 @@
 'use strict';
 
-import AccountView from 'domain/account/account_view'
-import SpecialsView from 'domain/specials/specials_view'
+import AccountView from 'great_pizzas/account/account_view'
+import SpecialsView from 'great_pizzas/specials/specials_view'
 import React from 'react-native'
 import configureStore from 'config/configure_store'
 import theme from 'theme'

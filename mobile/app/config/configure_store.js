@@ -1,4 +1,4 @@
-import accountReducers from 'domain/account/reducers'
+import accountReducers from 'great_pizzas/account/reducers'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 

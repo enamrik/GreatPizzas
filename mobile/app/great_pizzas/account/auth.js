@@ -2,7 +2,7 @@
 
 import settings from "settings"
 import http from "network/http"
-import session from "domain/account/session"
+import session from "great_pizzas/account/session"
 
 module.exports = {
   login: function(username, password) {

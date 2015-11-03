@@ -1,4 +1,4 @@
-import user from 'domain/account/session'
+import user from 'great_pizzas/account/session'
 import React from 'react-native'
 const { View, Text, Component, StyleSheet } = React;
 

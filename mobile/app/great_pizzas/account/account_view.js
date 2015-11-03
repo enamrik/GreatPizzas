@@ -1,11 +1,11 @@
 import React from 'react-native'
-import AccountDetailsView from 'domain/account/account_details_view'
-import LoginView from 'domain/account/login_view'
-import user from 'domain/account/session'
-import auth from 'domain/account/auth'
+import AccountDetailsView from 'great_pizzas/account/account_details_view'
+import LoginView from 'great_pizzas/account/login_view'
+import user from 'great_pizzas/account/session'
+import auth from 'great_pizzas/account/auth'
 import { connect } from 'react-redux/native'
 import { bindActionCreators } from 'redux'
-import accountActions from 'domain/account/actions'
+import accountActions from 'great_pizzas/account/actions'
 
 const { View, StyleSheet, Component } = React;
 

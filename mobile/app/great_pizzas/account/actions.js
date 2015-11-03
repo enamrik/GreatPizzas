@@ -1,4 +1,4 @@
-import auth from 'domain/account/auth'
+import auth from 'great_pizzas/account/auth'
 
 const actions = exports = module.exports;
 
