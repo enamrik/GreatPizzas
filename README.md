@@ -1,7 +1,3 @@
-# Great Pizzas
-
-A React Native proof of concept app
-
 ### Requirements
 
 NodeJS v4.0.0 
