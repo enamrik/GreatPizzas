@@ -1,6 +1,6 @@
 import React from 'react-native';
 import theme from 'theme';
-import BackNavBarItem from 'form_controls/navigation/back_navbar_item'
+import BackNavBarItem from 'navigation/back_navbar_item'
 const { View, Navigator, TouchableOpacity, Text, StyleSheet } = React;
 
 export default getNavBarRouter = () => {

@@ -1,6 +1,6 @@
 describe('back_navbar_item', () => {
   let navBarItemBackIcon = {uri:"someImage"};
-  const BackNavBarItem = require('inject!form_controls/navigation/back_navbar_item')({
+  const BackNavBarItem = require('inject!navigation/back_navbar_item')({
     'react-native': React,
     'image!navbar_item_back': navBarItemBackIcon
   });

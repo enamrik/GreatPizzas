@@ -5,7 +5,7 @@ import SpecialsView from 'great_pizzas/specials/specials_view'
 import React from 'react-native'
 import configureStore from 'config/configure_store'
 import theme from 'theme'
-import Navigator from 'form_controls/navigation/navigator'
+import Navigator from 'navigation/navigator'
 import { Provider } from 'react-redux/native'
 
 const { AppRegistry, TabBarIOS, View, Text, Component, StatusBarIOS, StyleSheet } = React;
