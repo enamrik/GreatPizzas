@@ -1,6 +1,6 @@
 import React from 'react-native'
-import LabeledFieldView from 'form_controls/labeled_field_view'
-import NoBorderButton from 'form_controls/no_border_button'
+import LabeledFieldView from 'forms/labeled_field_view'
+import NoBorderButton from 'forms/no_border_button'
 
 const { Component, View, StyleSheet, Text } = React;
 
