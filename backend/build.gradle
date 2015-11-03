@@ -11,6 +11,10 @@ repositories {
     mavenCentral()
 }
 
+processResources{
+    exclude 'public/src'
+}
+
 dependencies {
     compile 'org.projectlombok:lombok:1.12.6'
     compile 'org.springframework.boot:spring-boot-starter-web:1.2.6.RELEASE'
