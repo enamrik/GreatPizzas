@@ -2,9 +2,9 @@
 
 NodeJS v4.0.0 
 
-## Getting Started
+### Getting Started
 
-### Running the App
+#### Running the App
 
 1. Clone repository at: `https://github.com/enamrik/GreatPizzas`
 2. Navigate to the `<root>/backend` directory and run `gradle clean run`
@@ -12,15 +12,15 @@ NodeJS v4.0.0
 4. Run `npm start` to spin up  **react-native-web-server**. Ensure that the ReactPackager is **not** running while the react-native-web-server is running
 5. Open up ` GreatPizzas.xcodeproj`  at `<root>/mobile/ios` with Xcode and hit `Run`
 
-### Running Unit Tests
+#### Running Unit Tests
 
 To run all unit tests, run `npm test`. This will start **Karma** and run unit tests in Chrome. All unit tests are written in **Mocha**.
 
 To have Karma watch for file changes and run tests on file change, run `npm run test-session`
 
-## Design Decisions
+### Design Decisions
 
-### Packager
+#### Packager
 
 I switched from using the ReactPackager to WebPack because I wanted cleaner import statements. With WebPack I can now import scripts relative to root rather than relative to file. This means instead of this:
 
@@ -32,7 +32,7 @@ my imports look like this:
 
 Facebook created their ReactPackager for speed, I'll need to keep an eye out for WebPack performance issues as GreatPizzas grows
 
-### Testing Strategy
+#### Testing Strategy
 
 Testing components in GreatPizzas is similar to how web pages are tested in Selenium. For instance, given the following component:
 
