@@ -21,3 +21,6 @@ global.findByTestId = findByTestId;
 const context = require.context('./app', true, /-test.js$/);
 context.keys().forEach(context);
 
+const sharedModulesContext = require.context('../shared_modules', true, /-test.js$/);
+sharedModulesContext.keys().forEach(sharedModulesContext);
+

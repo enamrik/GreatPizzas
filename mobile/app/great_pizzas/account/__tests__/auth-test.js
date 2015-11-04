@@ -20,7 +20,7 @@ describe('auth', () => {
 
     auth = require('inject!great_pizzas/account/auth')({
       'settings':  settingsStub,
-      'network/http': httpStub,
+      'api_request/http': httpStub,
       'great_pizzas/account/session': { startNewSession : startNewSessionStub }
     });
   });

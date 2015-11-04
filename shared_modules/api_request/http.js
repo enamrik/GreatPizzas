@@ -1,6 +1,6 @@
-import fetch from 'network/fetch_wrapper'
-import NetworkError from 'network/network_error'
-import JsonParseError from 'network/json_parse_error'
+import fetch from 'api_request/fetch_wrapper'
+import NetworkError from 'api_request/network_error'
+import JsonParseError from 'api_request/json_parse_error'
 
 const HTTP_STATUS_NO_CONTENT = 204;
 

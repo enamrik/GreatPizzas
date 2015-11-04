@@ -1,7 +1,7 @@
 'use strict';
 
 import settings from "settings"
-import http from "network/http"
+import http from "api_request/http"
 import session from "great_pizzas/account/session"
 
 module.exports = {

@@ -14,9 +14,19 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].js'
   },
+  resolveLoader: {
+    root: [
+      path.resolve(__dirname, '../shared_modules'),
+      path.resolve(__dirname, './node_modules')
+    ],
+    extensions: ['', '.js']
+  },
   resolve: {
     //allow using require paths relative to root rather than relative to path
-    root: path.resolve('./app'),
+    root: [
+      path.resolve(__dirname, './app'),
+      path.resolve(__dirname, './node_modules'),
+      path.resolve(__dirname, '../shared_modules')],
     extensions: ['', '.js']
   },
   module: {

@@ -1,6 +1,6 @@
 describe('http', () => {
-  const NetworkError = require('network/network_error');
-  const JsonParseError = require('network/json_parse_error');
+  const NetworkError = require('api_request/network_error');
+  const JsonParseError = require('api_request/json_parse_error');
 
   it('should forward call to fetch', () => {
     const url = 'http://localhost:8080/users';
@@ -9,7 +9,7 @@ describe('http', () => {
     const response = {status: 200, json: parseJsonStub};
     const fetchStub = sinon.stub().resolves(response);
 
-    const http = require('inject!network/http')({ 'network/fetch_wrapper': fetchStub });
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
     http(url, options);
 
     expect(fetchStub).to.have.been.calledWith(url, options);
@@ -21,7 +21,7 @@ describe('http', () => {
     const response = {status: 200, json: parseJsonStub, statusText:'OK'};
     const fetchStub = sinon.stub().resolves(response);
 
-    const http = require('inject!network/http')({ 'network/fetch_wrapper': fetchStub });
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
     const responsePromise = http('http://localhost:8080/users', {});
 
     return expect(responsePromise).to.eventually.deep.eq(jsonData);
@@ -32,7 +32,7 @@ describe('http', () => {
     const response = {status: 200, json: parseJsonStub, statusText:'OK'};
     const fetchStub = sinon.stub().resolves(response);
 
-    const http = require('inject!network/http')({ 'network/fetch_wrapper': fetchStub });
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
     const responsePromise = http('http://localhost:8080/users', {});
 
     const expectedError = new JsonParseError("someError");
@@ -45,7 +45,7 @@ describe('http', () => {
     const response = {status: 404, json: parseJsonStub, statusText:'Not Found'};
     const fetchStub = sinon.stub().resolves(response);
 
-    const http = require('inject!network/http')({ 'network/fetch_wrapper': fetchStub });
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
     const responsePromise = http('http://localhost:8080/users', {});
 
     const expectedError = new NetworkError({json: jsonData, statusCode:404, statusText: 'Not Found'});
@@ -57,7 +57,7 @@ describe('http', () => {
     const response = {status: 404, json: parseJsonStub, statusText:'Not Found'};
     const fetchStub = sinon.stub().resolves(response);
 
-    const http = require('inject!network/http')({ 'network/fetch_wrapper': fetchStub });
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
     const responsePromise = http('http://localhost:8080/users', {});
 
     const expectedError = new NetworkError({statusCode:404, statusText: 'Not Found'});
