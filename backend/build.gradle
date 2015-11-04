@@ -2,6 +2,7 @@ group 'backend'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'application'
+apply plugin: 'spring-boot'
 
 mainClassName = 'com.sofree.backend.Application'
 
@@ -13,6 +14,15 @@ repositories {
 
 processResources{
     exclude 'public/src'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
+    }
 }
 
 dependencies {
