@@ -1,12 +1,19 @@
 import fetch from 'api_request/fetch_wrapper'
 import NetworkError from 'api_request/network_error'
 import JsonParseError from 'api_request/json_parse_error'
+import settings from "settings"
 
 const HTTP_STATUS_NO_CONTENT = 204;
 
 export default function(url, options) {
   return new Promise((resolve, reject) => {
-    fetch(url, options)
+
+    let finalOpts = Object.assign({}, options, {
+      body: stringifyBody(options.body),
+      headers: Object.assign({}, options.headers, getExtraHeaders(options))
+    });
+
+    fetch(settings["api-domain"] + url, finalOpts)
       .then((response) => {
         if (isSuccessfulResponse(response)) {
           handleSuccess(response, resolve, reject);
@@ -16,6 +23,20 @@ export default function(url, options) {
         }
       });
   });
+}
+
+function stringifyBody(body) {
+  return body == typeof 'string' ? body : JSON.stringify(body);
+}
+
+function getExtraHeaders(options) {
+  let headers = {
+    'Accept': 'application/json'
+  };
+  if(options.body) {
+    headers['Content-Type'] = 'application/json';
+  }
+  return headers;
 }
 
 function handleFailure(response, reject) {

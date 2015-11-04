@@ -32,14 +32,10 @@ describe('auth', () => {
       var payload = httpStub.getCall(0).args[1];
 
       var url = httpStub.getCall(0).args[0];
-      expect(url).to.eq(settingsStub["api-domain"] + '/login');
+      expect(url).to.eq('/login');
 
-      var credentials = JSON.parse(payload.body);
-      expect(credentials.username).to.eq('username');
-      expect(credentials.password).to.eq('password');
-
-      expect(payload.headers['Accept']).to.eq('application/json');
-      expect(payload.headers['Content-Type']).to.eq('application/json');
+      expect(payload.body.username).to.eq('username');
+      expect(payload.body.password).to.eq('password');
     });
   });
 

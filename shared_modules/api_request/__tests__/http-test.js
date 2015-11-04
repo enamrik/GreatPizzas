@@ -1,18 +1,93 @@
 describe('http', () => {
   const NetworkError = require('api_request/network_error');
   const JsonParseError = require('api_request/json_parse_error');
+  const domain = require('settings')["api-domain"];
 
   it('should forward call to fetch', () => {
-    const url = 'http://localhost:8080/users';
     const options = {}, jsonData = {};
     const parseJsonStub = sinon.stub().resolves(jsonData);
     const response = {status: 200, json: parseJsonStub};
     const fetchStub = sinon.stub().resolves(response);
 
     const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
-    http(url, options);
+    http('/user', options);
 
-    expect(fetchStub).to.have.been.calledWith(url, options);
+    expect(fetchStub).to.have.been.calledWith(domain + '/user');
+  });
+
+  it('should stringify body when body is an object', () => {
+    const jsonData = {};
+    const parseJsonStub = sinon.stub().resolves(jsonData);
+    const response = {status: 200, json: parseJsonStub};
+    const fetchStub = sinon.stub().resolves(response);
+    const requestOptions = {body:"someString"};
+
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
+
+    return http('/user', requestOptions).then(() =>{
+      let options = fetchStub.firstCall.args[1];
+      expect(JSON.parse(options.body)).to.deep.eq(requestOptions.body);
+    });
+  });
+
+  it('should leave body alone if already a string', () => {
+    const jsonData = {};
+    const parseJsonStub = sinon.stub().resolves(jsonData);
+    const response = {status: 200, json: parseJsonStub};
+    const fetchStub = sinon.stub().resolves(response);
+    const requestOptions = {body:"someString"};
+
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
+
+    return http('/user', requestOptions).then(() =>{
+      let options = fetchStub.firstCall.args[1];
+      expect(JSON.parse(options.body)).to.deep.eq(requestOptions.body);
+    });
+  });
+
+  it('should set content-type to application/json if body is present', () => {
+    const jsonData = {};
+    const parseJsonStub = sinon.stub().resolves(jsonData);
+    const response = {status: 200, json: parseJsonStub};
+    const fetchStub = sinon.stub().resolves(response);
+    const requestOptions = {body:"someString"};
+
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
+
+    return http('/user', requestOptions).then(() =>{
+      let options = fetchStub.firstCall.args[1];
+      expect(options.headers['Content-Type']).to.deep.eq('application/json');
+    });
+  });
+
+  it("should not set content-type to application/json if body isn't present", () => {
+    const jsonData = {};
+    const parseJsonStub = sinon.stub().resolves(jsonData);
+    const response = {status: 200, json: parseJsonStub};
+    const fetchStub = sinon.stub().resolves(response);
+    const requestOptions = {};
+
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
+
+    return http('/user', requestOptions).then(() =>{
+      let options = fetchStub.firstCall.args[1];
+      expect(options.headers['Content-Type']).to.be.undefined;
+    });
+  });
+
+  it("should set accept header to application/json", () => {
+    const jsonData = {};
+    const parseJsonStub = sinon.stub().resolves(jsonData);
+    const response = {status: 200, json: parseJsonStub};
+    const fetchStub = sinon.stub().resolves(response);
+    const requestOptions = {};
+
+    const http = require('inject!api_request/http')({ 'api_request/fetch_wrapper': fetchStub });
+
+    return http('/user', requestOptions).then(() =>{
+      let options = fetchStub.firstCall.args[1];
+      expect(options.headers['Accept']).to.deep.eq('application/json');
+    });
   });
 
   it('should resolve returned promise if fetch has success code and valid json', () => {
