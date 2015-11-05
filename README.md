@@ -52,12 +52,11 @@ we want to verify that the component renders the title its given. To do this we 
 
 	it('should render title', () => {
 	  let expectedTitle = "someTitle";
-	  let output = shallowRender(<BackNavBarItem title={expectedTitle} />).getRenderOutput();
+	  let output = shallowRender(<MyComponent title={expectedTitle} />).getRenderOutput();
 	  let title = findByTestId(output, "title");
 	  expect(title.props.children).to.eq(expectedTitle);
 	});
 
 You can find the `shallowRender` and `findByTestId` methods in `<root>/mobile/app/testing/shallow_rendering.js`
 	    
-
 
