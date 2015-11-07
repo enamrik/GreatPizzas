@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var jest = require('jest-cli');
 var os = require('os');
 var fs = require('fs');
 var path = require('path');
@@ -50,7 +49,3 @@ function parseSettings(settingsString) {
 function stringifySettings(settings){
   return "module.exports=" + JSON.stringify(settings, null, ' ') + ";";
 }
-
-var jestConfig = {
-  rootDir: 'app'
-};
